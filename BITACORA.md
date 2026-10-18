@@ -31,6 +31,7 @@ Errores encontrados y arreglados en el camino:
 - Promedio de las 3 semillas por corte: el máximo está en **9.000–10.000** envíos; 8.000 y 12.000 son claramente peores.
 - La semilla 150001 se trabó en el final training (de 20 min a más de 5 h por modelo); se reinició la VM y retomó desde los 6 modelos grabados. Terminó a las 16:09.
 - Primer ensamble por ranking (3 semillas) en 9.000 / 9.500 / 10.000.
+- **Ensamble por ranking de 6 semillas** (150001, 333331, 450007, 570001, 720007, 910009): **450,914** en 9.500 y **447,831** en 10.000, contra 440,9 y 439,7 de promedio de las semillas en esos cortes (**+8 a +10 puntos**). En 9.500 supera a 5 de las 6 semillas. Detalle en z739_v2/resultados/ensambles_publicos.tsv.
 
 ## Próximo — z739 v3 (exp. 9900)
 
