@@ -37,3 +37,19 @@ Cada uno con el motivo y dónde va. Al implementarlo, pasarlo a la bitácora y b
 - **Sí afecta el modelo** (cambia los hiperparámetros del final training). Si se aplica después
   de correr la v3, sería una versión nueva (no comparable directamente con la v3 ya corrida).
 - Agregado: 2026-10-18.
+
+## 3. Revisar la cantidad de iteraciones de la BO por ganancia
+
+- **Dónde:** `z739_final_senior_v3.R`, celda 86 (`PARAM$hipeparametertuning$num_interations`).
+- **Qué:** hoy son 50 iteraciones + 32 puntos iniciales (4 por dimensión × 8) = 82
+  evaluaciones. Ese 50 fue una regla práctica al pasar de 5 a 8 hiperparámetros (la notebook
+  tenía 30), no se ajustó para una métrica ruidosa.
+- **Cómo decidirlo (después de correr la v3):** mirar en `BO_log.txt` de cada semilla en qué
+  evaluación apareció la mejor ganancia y si las últimas ~20 siguen encontrando mejoras. Si la
+  mejor suele aparecer al final, subir (por ejemplo a 80 → 112 evaluaciones, +1 a 1,5 h por
+  semilla). Si se estabiliza antes, dejarlo.
+- **Por qué:** con ganancia ruidosa y nugget, cada evaluación aporta menos información y el
+  nugget se estima con los mismos puntos; 82 evaluaciones (~10 por dimensión) alcanza para la
+  AUC pero puede quedar corto acá.
+- **Sí afecta el modelo** (cambia la búsqueda). Aplicarlo después de la v3 es una versión nueva.
+- Agregado: 2026-10-18.
