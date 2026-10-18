@@ -1750,14 +1750,21 @@ print(param_final)
 # --- celda 104 ---
 # poner este valor en 5 o en 1  si se está muy ajustado de tiempo
 
-PARAM$FT$semillerio <- 9  # semillerio fijo; el ensamble grande es entre semillas del pipeline
+# v3: semillerio de 30 (FT_SEMILLERIO en el .env, de 1 a 30)
+PARAM$FT$semillerio <- as.integer(Sys.getenv("FT_SEMILLERIO", "30"))
 
 # --- celda 105 de la notebook: se saca (solo mostraba datos o instalaba algo que no se usa) ---
 
 # --- celda 106 ---
-# semillerio FIJO: las mismas 9 semillas en todas las corridas;
-# el ensamble grande es entre semillas del pipeline
-PARAM$FT$semillas <- c(100213, 100313, 100613, 100913, 101113, 570991, 669287, 832421, 882599)
+# semillerio FIJO: las mismas semillas en todas las corridas. Las 9 primeras son
+# las de la v2 (en el mismo orden): prob_1..prob_9 de prediccion.txt son los mismos
+# modelos que usaria la v2 y permiten comparar v2 vs v3 con 9 modelos. Las 21
+# siguientes son primos sorteados con set.seed(100213) entre 100000 y 999999
+PARAM$FT$semillas <- c(100213, 100313, 100613, 100913, 101113, 570991, 669287, 832421, 882599,
+                       287821, 291491, 365297, 695269, 956713, 553667, 118273, 859093, 691121,
+                       502631, 527809, 405413, 168227, 157669, 509797, 925271, 146383, 118603,
+                       397297, 963499, 977507)
+PARAM$FT$semillas <- head(PARAM$FT$semillas, PARAM$FT$semillerio)
 PARAM$FT$semillerio <- length(PARAM$FT$semillas)
 if (PRUEBA > 0) { PARAM$FT$semillas <- PARAM$FT$semillas[1]; PARAM$FT$semillerio <- 1 }
 cat( PARAM$FT$semillas, "\n")
