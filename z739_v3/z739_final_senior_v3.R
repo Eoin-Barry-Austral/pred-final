@@ -1621,9 +1621,13 @@ obj.fun <- makeSingleObjectiveFunction(
 )
 
 # cada 600 segundos guardo el resultado intermedio
+# v3: con BO por ganancia (ruidosa) el punto final es el que el sustituto
+# PREDICE como mejor entre los evaluados, no el de mayor ganancia medida (que
+# puede ser uno con suerte). Con AUC, como la notebook (el mejor medido)
 ctrl <- makeMBOControl(
     save.on.disk.at.time= 600,
-    save.file.path= "HT.RDATA"
+    save.file.path= "HT.RDATA",
+    final.method= if (PARAM$BO$metrica == "ganancia") "best.predicted" else "best.true.y"
 )
 
 # indico la cantidad de iteraciones que va a tener la Bayesian Optimization
@@ -1658,6 +1662,15 @@ if (file.exists("BO_log.txt")) {
     bayesiana_salida <- mboContinue("HT.RDATA") # retomo en caso que ya exista
   }
   tb_bayesiana <- as.data.table(bayesiana_salida$opt.path)
+  # v3: marca la fila que eligio mlrMBO (best.ind es su posicion en el opt.path,
+  # en la misma escala que el resto de la tabla: sin trafo). Queda grabada en
+  # BO_log.txt, asi al retomar se usa la misma
+  if (PARAM$BO$metrica == "ganancia") {
+    ind <- bayesiana_salida$best.ind
+    tb_bayesiana[, elegido := FALSE]
+    if (length(ind) == 1 && !is.na(ind) && ind >= 1 && ind <= nrow(tb_bayesiana))
+      tb_bayesiana[ind, elegido := TRUE]
+  }
 }
 
 # --- celda 95 ---
@@ -1665,7 +1678,18 @@ if (file.exists("BO_log.txt")) {
 # y capturo los mejores hiperparametros encontrados
 
 # ordeno en forma descendente por AUC = y
-setorder(tb_bayesiana, -y, -num_iterations)
+# v3: con BO por ganancia, primero la fila elegida por el sustituto
+if ("elegido" %in% names(tb_bayesiana) && any(tb_bayesiana$elegido)) {
+  tb_bayesiana[, puesto_medido := frank(-y, ties.method= "min")]
+  marca("BO: elegido por el sustituto (best.predicted): ganancia medida", round(tb_bayesiana[elegido == TRUE, y]),
+        "- puesto", tb_bayesiana[elegido == TRUE, puesto_medido], "de", nrow(tb_bayesiana),
+        "por ganancia medida (la maxima medida fue", round(max(tb_bayesiana$y)), ")")
+  tb_bayesiana[, puesto_medido := NULL]
+  setorder(tb_bayesiana, -elegido, -y, -num_iterations)
+} else {
+  if (PARAM$BO$metrica == "ganancia") marca("BO: no hay punto de best.predicted, uso el maximo medido")
+  setorder(tb_bayesiana, -y, -num_iterations)
+}
 
 # grabo para eventualmente poder utilizarlos en OTRA corrida
 fwrite( tb_bayesiana,
@@ -1678,7 +1702,7 @@ PARAM$out$lgbm$mejores_hiperparametros <- tb_bayesiana[
   1, # el primero es el de mejor AUC
   setdiff(colnames(tb_bayesiana),
     c("y","dob","eol","error.message","exec.time","ei","error.model",
-      "train.time","prop.type","propose.time","se","mean","iter")),
+      "train.time","prop.type","propose.time","se","mean","iter","elegido")),
   with= FALSE
 ]
 

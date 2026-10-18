@@ -83,6 +83,10 @@ for SEM in $SEMILLAS; do
   # Vigia: si R (con sus hijos) pasa 30 min casi sin usar CPU, esta colgado:
   # lo mata y sale con 99, y la misma semilla se reintenta desde el checkpoint.
   # R corre en su propia sesion (setsid) para sumar la CPU de todos sus procesos.
+  # v3: tambien si el final training pasa 90 min sin un 'modelo final listo'
+  # (R sigue usando CPU pero no avanza: paso con la semilla 150001 de la v2). Al
+  # reintentar saltea la BO y los modelos ya grabados. Solo mira las lineas que
+  # escribio ESTE intento (LINEA0), no las de intentos anteriores.
   for INTENTO in 1 2 3; do
     ds bash -lc "
       export PATH=\$HOME/.local/bin:\$PATH
@@ -93,6 +97,7 @@ for SEM in $SEMILLAS; do
       [ -f log_$CORRIDA.txt ] && [ ! -f \$LOCAL ] && cp log_$CORRIDA.txt \$LOCAL
       ( while sleep 60; do cp \$LOCAL log_$CORRIDA.txt; done ) &
       COPIA=\$!
+      LINEA0=\$(cat \$LOCAL 2>/dev/null | wc -l)
       setsid Rscript workflow.R .env $ARG >> \$LOCAL 2>&1 &
       R_PID=\$!
       cpu() { ps -s \$R_PID -o times= | awk '{s += \$1} END {print s + 0}'; }
@@ -107,6 +112,17 @@ for SEM in $SEMILLAS; do
             pkill -TERM -s \$R_PID; sleep 30; pkill -KILL -s \$R_PID
             break
           fi
+          ETAPA=\$(tail -n +\$((LINEA0 + 1)) \$LOCAL | grep ' | ' | tail -1)
+          case \"\$ETAPA\" in
+            *'| final training'*|*'| modelo final listo'*)
+              T=\$(date -u -d \"\${ETAPA:0:19}\" +%s 2>/dev/null || echo 0)
+              if [ \"\$T\" -gt 0 ] && [ \$(( \$(date -u +%s) - T )) -ge 5400 ]; then
+                echo \"\$(date -u '+%F %T') | VIGIA: final training sin avances hace 90 min, lo mato y reintento la semilla\" >> \$LOCAL
+                touch \$COLGADO
+                pkill -TERM -s \$R_PID; sleep 30; pkill -KILL -s \$R_PID
+                break
+              fi;;
+          esac
         done ) &
       VIGIA=\$!
       wait \$R_PID
@@ -118,7 +134,7 @@ for SEM in $SEMILLAS; do
     RC=$?
     [ "$RC" = "99" ] || break
     mail "$CORRIDA" "R colgado (intento $INTENTO)" \
-      "R paso 30 min sin usar CPU. Lo mate y reintento la semilla desde el checkpoint. Ver $DIR/log_$CORRIDA.txt."
+      "R paso 30 min sin usar CPU o el final training 90 min sin avances. Lo mate y reintento la semilla desde el checkpoint. Ver $DIR/log_$CORRIDA.txt."
   done
   if ! ds test -f "$FIN"; then
     # rc 1 = error que R ya aviso por mail. Otro rc = R murio sin poder avisar
