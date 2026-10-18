@@ -53,3 +53,16 @@ Cada uno con el motivo y dónde va. Al implementarlo, pasarlo a la bitácora y b
   AUC pero puede quedar corto acá.
 - **Sí afecta el modelo** (cambia la búsqueda). Aplicarlo después de la v3 es una versión nueva.
 - Agregado: 2026-10-18.
+
+## 4. Idea para v4/v5: early stopping en la BO
+
+- **No es para la v3** (la v3 existe para dejar de elegir por AUC).
+- **Qué:** `early_stopping_rounds = 200` en la BO, con un set de validación; la cantidad de
+  árboles la decide el early stopping y `num_iterations` deja de ser hiperparámetro (8 → 7).
+- **A favor:** la BO es mucho más rápida (corta temprano las combinaciones malas) y explora
+  mejor con una dimensión menos; el tiempo ahorrado paga más iteraciones o más semillas.
+- **En contra:** necesita una métrica árbol por árbol en validación, que en la práctica es la
+  AUC (la ganancia por árbol es lenta y ruidosa, y el ruido puede cortar antes de tiempo); y el
+  final training no tiene mes de validación, así que hay que llevarle la iteración de corte de la
+  BO ajustada a ojo (+10–20%) porque entrena con más datos.
+- Agregado: 2026-10-18.
