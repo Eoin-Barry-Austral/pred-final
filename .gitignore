@@ -1,0 +1,24 @@
+# credenciales: NUNCA al repo
+kaggle.json
+**/kaggle.json
+secrets/
+
+# datos de la catedra y salidas pesadas (quedan en el bucket)
+*.csv.gz
+datasets/
+checkpoints/
+modelos/
+*.fst
+*.RDATA
+*.model
+prediccion.txt
+kaggle/
+*.zip
+
+# R / sistema
+.Rhistory
+.RData
+.Rproj.user/
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
