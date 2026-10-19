@@ -45,6 +45,7 @@ Errores encontrados y arreglados en el camino:
 
 ## 2026-10-19 — v3: primer par y preparación de la v4
 
-- **v3, semilla 150001:** promedio público de los 9 cortes **431,5** contra **435,9** en la v2 (−4,5), peor en 8 de 9 cortes y unos −8 en 9.000–10.000. Un solo par: no concluye, pero es mala señal. Regla propuesta: si la v3 es peor en 3 de los primeros 4 pares, se para.
+- **v3, semilla 150001:** promedio público de los 9 cortes **431,5** contra **435,9** en la v2 (−4,5), peor en 8 de 9 cortes y unos −8 en 9.000–10.000. Un solo par: no concluye, pero es mala señal.
+- **Regla de decisión (acordada):** se compara cada semilla de la v3 con la misma semilla de la v2 (promedio público de los 9 cortes). **Cuando 4 semillas de la v3 resulten peores que su par de la v2 (conteo acumulado), se para la v3 y se lanza la v4.** Al 2026-10-19 15:15 UTC: 1 peor de 1.
 - La BO de la v3 eligió modelos mucho más chicos y regularizados que la v2 (150001: 554 árboles, 294 hojas, lr 0,05, `min_data_in_leaf` 295, `lambda_l1` 19,7; la v2 eligió 1.590 árboles y 4.076 hojas). Hipótesis: entrenar la BO hasta 202102 (datos viejos) le cuesta en 202109.
 - **v4 (exp. 9950, preparada, sin correr):** validación de la BO **hacia adelante** (`BO_ESQUEMA=adelante`, `BO_VALIDA=202105,202107`): para cada mes de validación un modelo entrenado de 201901 a ese mes menos 2 (202105 ← 201901–202103; 202107 ← 201901–202105). Datos recientes como el final training, sin ver datos posteriores al mes que valida. Se descartó entrenar hasta 202107 sacando 202104–202105, porque el modelo vería datos posteriores a los meses que valida (interpolar en vez de predecir 2 meses adelante). Costo: 2 modelos por evaluación (BO ~2×, ~12–14 h por semilla con semillerío de 30).
