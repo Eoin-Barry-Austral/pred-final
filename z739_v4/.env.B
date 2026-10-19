@@ -9,8 +9,8 @@ SEMILLAS_PIPELINE=150001
 PRUEBA_FRACCION=0.03
 
 BO_METRICA=ganancia
-BO_ESQUEMA=adelante
-BO_VALIDA=202105,202107
+BO_ESQUEMA=fijo
+BO_VALIDA=202107
 
 # no sube nada: genera los csv y verifica la credencial
 KAGGLE_SUBIR=0
