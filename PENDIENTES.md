@@ -23,15 +23,15 @@ Cada uno con el motivo y dónde va. Al implementarlo, pasarlo a la bitácora y b
 - **Sí afecta el modelo** (cambia la búsqueda). Aplicarlo después de la v3 es una versión nueva.
 - Agregado: 2026-10-18.
 
-## 4. Idea para v4/v5: early stopping en la BO
+> El punto **4** (early stopping en la BO) se implementó el 2026-10-19 en la v4, con la
+> ganancia árbol por árbol como métrica y el factor 1,15 para el final training. Ver BITACORA.md.
 
-- **No es para la v3** (la v3 existe para dejar de elegir por AUC).
-- **Qué:** `early_stopping_rounds = 200` en la BO, con un set de validación; la cantidad de
-  árboles la decide el early stopping y `num_iterations` deja de ser hiperparámetro (8 → 7).
-- **A favor:** la BO es mucho más rápida (corta temprano las combinaciones malas) y explora
-  mejor con una dimensión menos; el tiempo ahorrado paga más iteraciones o más semillas.
-- **En contra:** necesita una métrica árbol por árbol en validación, que en la práctica es la
-  AUC (la ganancia por árbol es lenta y ruidosa, y el ruido puede cortar antes de tiempo); y el
-  final training no tiene mes de validación, así que hay que llevarle la iteración de corte de la
-  BO ajustada a ojo (+10–20%) porque entrena con más datos.
-- Agregado: 2026-10-18.
+## 5. Revisar el factor 1,15 de iteraciones del final training (v4)
+
+- **Dónde:** `.env.A` de la v4 (`FT_FACTOR_ITER`).
+- **Cómo decidirlo:** con las primeras semillas de la v4, mirar en el log la línea
+  "BO early stopping: … ganancia promedio vs la mejor iteración" y las columnas `g_085`,
+  `g_115`, `g_130` de `BO_log.txt`. Si x1,15 queda prácticamente igual que la mejor iteración,
+  el factor no importa; si cae claramente, bajarlo; si sube, subirlo.
+- **Sí afecta el modelo** (cambia la cantidad de árboles del final training).
+- Agregado: 2026-10-19.
