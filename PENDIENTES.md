@@ -48,3 +48,16 @@ Cada uno con el motivo y dónde va. Al implementarlo, pasarlo a la bitácora y b
   dominan el objetivo de la BO.
 - **Sí afecta el modelo** (cambia qué hiperparámetros elige la BO). No aplica a la v4 (valida un solo mes).
 - Agregado: 2026-10-19.
+
+## 7. Vigía también para la BO
+
+- **Dónde:** `vm/startup.sh` (v3/v4 y siguientes).
+- **Qué:** hoy el vigía reinicia R si pasa 30 min sin CPU o si el final training pasa 90 min sin
+  un `modelo final listo`. Agregar: si durante la BO pasan **más de 60 min sin una línea
+  `GANANCIA`** (una evaluación nueva), reiniciar R. Al reintentar, mlrMBO retoma desde
+  `HT.RDATA` (se guarda cada 10 min), así que se pierde a lo sumo la evaluación en curso.
+- **Por qué:** el 2026-10-19 la BO de la semilla 720007 (v3) pasó de evaluaciones de 1–20 min a
+  una de **1 h 43 min** (2.022 hojas), usando CPU: la misma degradación que tuvo la 150001 de la
+  v2 en el final training. Se reinició la VM a mano y retomó en la evaluación 58 de 82.
+- **No afecta el modelo.**
+- Agregado: 2026-10-19.
