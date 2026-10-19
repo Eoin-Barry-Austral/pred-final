@@ -35,3 +35,16 @@ Cada uno con el motivo y dónde va. Al implementarlo, pasarlo a la bitácora y b
   el factor no importa; si cae claramente, bajarlo; si sube, subirlo.
 - **Sí afecta el modelo** (cambia la cantidad de árboles del final training).
 - Agregado: 2026-10-19.
+
+## 6. Idea para una versión futura: normalizar la ganancia por mes en la BO
+
+- **Dónde:** `ganancia_meses()` del script (v3; sirve para cualquier BO con varios meses de validación).
+- **Qué:** en vez de promediar la ganancia en millones de cada mes, promediar la ganancia
+  **relativa** de cada mes, por ejemplo dividida por la ganancia máxima posible del mes
+  (todos los BAJA+2 × 975.000), así cada mes pesa igual.
+- **Por qué:** en las 4 semillas de la v3 y en todas sus evaluaciones, 202105 fue el peor mes
+  (~240 M) y 202107 el mejor (~580 M). No es que el modelo ande peor: 202105 tiene 854 BAJA+2
+  (0,52%) contra 1.304 (0,79%) de 202107. Al promediar en millones, los meses con más bajas
+  dominan el objetivo de la BO.
+- **Sí afecta el modelo** (cambia qué hiperparámetros elige la BO). No aplica a la v4 (valida un solo mes).
+- Agregado: 2026-10-19.
