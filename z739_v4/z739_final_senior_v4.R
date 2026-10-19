@@ -1460,6 +1460,23 @@ if (PARAM$BO$esquema == "adelante") {
 marca("BO por", PARAM$BO$metrica, "- valida en", paste(PARAM$trainingstrategy$validate, collapse= ","),
       "- entrena", min(PARAM$trainingstrategy$training), "a", max(PARAM$trainingstrategy$training))
 
+# --- v4: early stopping en la BO (desde el .env) -----------------------------
+#   BO_EARLY_STOPPING=200  cada evaluacion de la BO entrena hasta BO_TOPE_ITERACIONES
+#                          arboles y corta si la ganancia en el mes de validacion no
+#                          mejora en 200 arboles; num_iterations deja de ser
+#                          hiperparametro de la BO. 0 = sin early stopping (v3)
+#   FT_FACTOR_ITER=1.15    el final training usa la mejor iteracion de la evaluacion
+#                          elegida x este factor (entrena con ~4 veces mas filas)
+PARAM$BO$es_rounds <- as.integer(Sys.getenv("BO_EARLY_STOPPING", "0"))
+PARAM$BO$tope_iter <- as.integer(Sys.getenv("BO_TOPE_ITERACIONES", "2048"))
+PARAM$FT$factor_iter <- as.numeric(Sys.getenv("FT_FACTOR_ITER", "1.15"))
+if (PARAM$BO$es_rounds > 0) {
+  if (PARAM$BO$metrica != "ganancia" || PARAM$BO$esquema != "fijo" || length(PARAM$trainingstrategy$validate) != 1)
+    stop("BO_EARLY_STOPPING requiere BO_METRICA=ganancia, BO_ESQUEMA=fijo y un solo mes en BO_VALIDA")
+  marca("BO con early stopping:", PARAM$BO$es_rounds, "arboles de paciencia, tope", PARAM$BO$tope_iter,
+        "- final training con la mejor iteracion x", PARAM$FT$factor_iter)
+}
+
 # --- celda 76 ---
 # seteo la clase01   1={BAJA+1, BAJA+2}   0={CONTINUA}
 dataset[, clase01 := ifelse( clase_ternaria %in% PARAM$trainingstrategy$positivos, 1, 0 )]
@@ -1592,6 +1609,9 @@ PARAM$hipeparametertuning$hs <- makeParamSet(
   makeNumericParam("lambda_l1", lower= -10.0, upper= 7.0, trafo= function(x) 2^x),
   makeNumericParam("lambda_l2", lower= -10.0, upper= 7.0, trafo= function(x) 2^x)
 )
+# v4: con early stopping la cantidad de arboles la decide el corte, no la BO
+if (PARAM$BO$es_rounds > 0)
+  PARAM$hipeparametertuning$hs <- dropParams(PARAM$hipeparametertuning$hs, "num_iterations")
 
 # --- celda 89 ---
 # En  x llegan los parmaetros de la bayesiana
@@ -1608,10 +1628,47 @@ ganancia_meses <- function(modelo) {
   list(media= mean(g), por_mes= g)
 }
 
+# v4: ganancia (meseta de los cortes) como metrica de LightGBM arbol por arbol,
+# para el early stopping. Usa el vector de ganancias del mes de validacion
+# (mismo orden de filas que dvalid_es)
+feval_ganancia <- function(preds, datos) {
+  acum <- cumsum(BO_meses[[1]]$gan[order(-preds)])
+  list(name= "ganancia", value= mean(acum[pmin(PARAM$BO$cortes, length(acum))]), higher_better= TRUE)
+}
+if (PARAM$BO$es_rounds > 0) {
+  dvalid_es <- lgb.Dataset.create.valid(dtrain, BO_meses[[1]]$X,
+    label= as.integer(BO_meses[[1]]$gan > 0))
+}
+
 EstimarGanancia_AUC_lightgbm <- function(x) {
 
   # x pisa (o agrega) a param_fijos
   param_completo <- modifyList(PARAM$lgbm$param_fijos, x)
+
+  # v4: early stopping por ganancia en el mes de validacion
+  if (PARAM$BO$es_rounds > 0) {
+    param_completo$num_iterations <- PARAM$BO$tope_iter
+    param_completo$early_stopping_rounds <- PARAM$BO$es_rounds
+    param_completo$metric <- "None"
+    modelo_train <- lgb.train(data= dtrain, param= param_completo,
+      valids= list(valid= dvalid_es), eval= feval_ganancia, verbose= -100)
+    curva <- unlist(modelo_train$record_evals$valid$ganancia$eval)
+    best_iter <- modelo_train$best_iter
+    # si no corto (llego al tope) o LightGBM no informa la mejor iteracion: el maximo de la curva
+    if (is.null(best_iter) || length(best_iter) != 1 || is.na(best_iter) || best_iter < 1 || best_iter > length(curva))
+      best_iter <- which.max(curva)
+    # registro de la curva alrededor de la mejor iteracion (NA si el corte fue antes)
+    en <- function(f) { i <- round(best_iter * f); if (i >= 1 && i <= length(curva)) curva[i] else NA_real_ }
+    valor <- curva[best_iter]
+    message(format(Sys.time(), "%a %b %d %X %Y  "), toString(x),
+      " GANANCIA ", round(valor), " best_iter ", best_iter, " de ", length(curva),
+      " | x0.85 ", round(en(0.85)), " x1.15 ", round(en(1.15)), " x1.3 ", round(en(1.3)))
+    rm(modelo_train)
+    gc(full= TRUE, verbose= FALSE)
+    attr(valor, "extras") <- list(best_iter= best_iter, iter_corridas= length(curva),
+      g_085= en(0.85), g_100= valor, g_115= en(1.15), g_130= en(1.3))
+    return(valor)
+  }
 
   # v4: hacia adelante, un modelo por mes de validacion, cada uno con su training
   if (PARAM$BO$metrica == "ganancia" && PARAM$BO$esquema == "adelante") {
@@ -1740,10 +1797,18 @@ if ("elegido" %in% names(tb_bayesiana) && any(tb_bayesiana$elegido)) {
         "- puesto", tb_bayesiana[elegido == TRUE, puesto_medido], "de", nrow(tb_bayesiana),
         "por ganancia medida (la maxima medida fue", round(max(tb_bayesiana$y)), ")")
   tb_bayesiana[, puesto_medido := NULL]
-  setorder(tb_bayesiana, -elegido, -y, -num_iterations)
+  setorderv(tb_bayesiana, intersect(c("elegido", "y", "num_iterations"), names(tb_bayesiana)), order= -1L)
 } else {
   if (PARAM$BO$metrica == "ganancia") marca("BO: no hay punto de best.predicted, uso el maximo medido")
-  setorder(tb_bayesiana, -y, -num_iterations)
+  setorderv(tb_bayesiana, intersect(c("y", "num_iterations"), names(tb_bayesiana)), order= -1L)
+}
+# v4: con early stopping, resumen de la curva alrededor de la mejor iteracion
+# (promedio de todas las evaluaciones, relativo a la mejor iteracion)
+if ("best_iter" %in% names(tb_bayesiana)) {
+  rel <- function(col) round(mean((tb_bayesiana[[col]] - tb_bayesiana$g_100) / 1e6, na.rm= TRUE), 2)
+  marca("BO early stopping: mejor iteracion de la elegida", tb_bayesiana[1, best_iter],
+        "- ganancia promedio vs la mejor iteracion (M): x0.85", rel("g_085"), "x1.15", rel("g_115"), "x1.3", rel("g_130"),
+        "- evaluaciones con dato en x1.15:", sum(!is.na(tb_bayesiana$g_115)), "de", nrow(tb_bayesiana))
 }
 
 # grabo para eventualmente poder utilizarlos en OTRA corrida
@@ -1757,7 +1822,8 @@ PARAM$out$lgbm$mejores_hiperparametros <- tb_bayesiana[
   1, # el primero es el de mejor AUC
   setdiff(colnames(tb_bayesiana),
     c("y","dob","eol","error.message","exec.time","ei","error.model",
-      "train.time","prop.type","propose.time","se","mean","iter","elegido")),
+      "train.time","prop.type","propose.time","se","mean","iter","elegido",
+      "iter_corridas","g_085","g_100","g_115","g_130")),
   with= FALSE
 ]
 
@@ -1809,7 +1875,11 @@ fijos$early_stopping_rounds <- NULL
 param_final <- copy(fijos)
 
 x <- PARAM$out$lgbm$mejores_hiperparametros
-param_final$num_iterations <- round( 2^x$num_iterations )
+param_final$num_iterations <- if ("best_iter" %in% names(x)) {
+  # v4: early stopping -> mejor iteracion de la evaluacion elegida x FT_FACTOR_ITER
+  round( x$best_iter * PARAM$FT$factor_iter )
+} else round( 2^x$num_iterations )
+marca("final training con", param_final$num_iterations, "arboles")
 param_final$num_leaves <- round( 2^x$num_leaves )
 param_final$learning_rate <- 2^x$learning_rate
 param_final$feature_fraction <- x$feature_fraction
