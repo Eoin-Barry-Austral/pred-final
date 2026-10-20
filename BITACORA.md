@@ -67,3 +67,9 @@ Errores encontrados y arreglados en el camino:
 - **Regla: 2 peores de 5** (hacen falta 4 para pasar a la v4). Diferencia media −0,5 (9 cortes) y −0,6 (centro): por ahora la v3 empata con la v2.
 - La v3 tiene **menos dispersión entre semillas** (428,5–437,5, contra 424,2–440,7 en la v2): mejora las semillas flojas de la v2 y empeora las buenas. Consistente con el semillerío de 30 y con modelos más regularizados.
 - Tiempos: 720007 tardó 12 h (con la BO trabada y el reinicio), 600017 solo 5 h 08 min. En curso desde las 07:28 UTC: 570001 (z739g-a2) y 850009 (z739g-a), los dos en el final training.
+
+## 2026-10-20 — v4: canaritos con 2,0 desvíos
+
+- `PARAM$CN$desvios` pasa a leerse del `.env` (`CN_DESVIOS`, por defecto 2,5); la v4 usa **2,0** (`.env.A` y `.env.B`). El log lo registra en la línea `canaritos: ratio 0.2 desvios 2`, que la prueba corta de la v4 controla.
+- Efecto medido con `impo_1.txt` de las 7 semillas de la v3: con 2,0, 4 semillas quedan casi igual (488–633 columnas) y 3 pierden ~85–115 columnas (13–18%; 150001 692→578, 720007 630→517, 910009 673→588). Las que se van rankean por debajo de casi todos los canaritos. Con 1,5 o 1,0 el recorte sería del 10–35%.
+- Contra: la v4 suma un tercer cambio respecto de la v3 (validación en 202107, early stopping, canaritos). Se aceptó porque el efecto es chico y el objetivo es el puntaje del domingo.

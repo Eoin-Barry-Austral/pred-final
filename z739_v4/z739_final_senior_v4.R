@@ -1351,7 +1351,7 @@ CanaritosAsesinos <- function(
 # --- celda 68 ---
 # Estos DOS parametros son los que se deben modificar
 PARAM$CN$ratio <- 0.2
-PARAM$CN$desvios <- 2.5
+PARAM$CN$desvios <- as.numeric(Sys.getenv("CN_DESVIOS", "2.5"))   # v4: configurable desde el .env
 
 
 # Parametros quasi fijos
@@ -1365,7 +1365,7 @@ PARAM$CN$train$gan1 <- 0.975
 PARAM$CN$train$gan0 <- -0.025
 
 # --- celda 69 ---
-marca("canaritos")
+marca("canaritos: ratio", PARAM$CN$ratio, "desvios", PARAM$CN$desvios)
 # la llamada a Canaritos Asesinos
 tb_importancia <- CanaritosAsesinos(
   canaritos_ratio = PARAM$CN$ratio,
