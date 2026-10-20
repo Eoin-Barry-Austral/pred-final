@@ -53,3 +53,17 @@ Errores encontrados y arreglados en el camino:
 - **v4 con early stopping (2026-10-19):** la BO deja de buscar `num_iterations` (7 hiperparámetros, 28 puntos iniciales + 50 = 78 evaluaciones). Cada evaluación entrena hasta 2.048 árboles y corta si la **ganancia en 202107** (la meseta de los cortes 8.000–12.000, calculada árbol por árbol) no mejora en **200 árboles**. El final training usa la mejor iteración de la evaluación elegida **× 1,15** (regla práctica: el final training tiene ~4 veces más filas; cerca del óptimo la curva suele ser plana). Cada evaluación registra la ganancia en 0,85×, 1,15× y 1,3× de su mejor iteración (`g_085`, `g_115`, `g_130` en `BO_log.txt`) para revisar el factor con datos; 1,15× y 1,3× solo existen si caen dentro de las 200 iteraciones posteriores al mejor punto. Configurable: `BO_EARLY_STOPPING`, `BO_TOPE_ITERACIONES`, `FT_FACTOR_ITER`.
 - **Cambio automático a la v4 (autorizado por el usuario, 2026-10-19):** el chequeo de cada 2 h cuenta los pares v3 vs v2 con `kaggle_submissions.csv`. Cuando haya 4 semillas de la v3 peores que su par de la v2, para la v3, corre la prueba corta de la v4 (exp. 9995) y, solo si pasan todos los controles (BO por ganancia en 202107 con early stopping, `best_iter` en el log y en `BO_log.txt`, árboles del final training, credencial de Kaggle, `TERMINADO`, sin errores), lanza las 2 VMs de la v4. Si un control falla, deja la v3 parada y no lanza nada.
 - **Vigia de la BO en la v4 (2026-10-19):** `vm/startup.sh` reinicia R si la BO pasa 60 min sin una evaluacion nueva (linea GANANCIA del intento actual); al reintentar mlrMBO retoma desde HT.RDATA. Motivo: la semilla 720007 de la v3 tardo 1 h 43 min en la evaluacion 58 (2.022 hojas) usando CPU; se reinicio la VM a mano a las 23:30 UTC y la evaluacion siguiente (1.450 hojas) tardo ~5 min. Probado localmente con 3 escenarios simulados (evaluaciones normales, una de 50 min, BO trabada).
+
+## 2026-10-20 — v3: 5 pares
+
+| semilla | v2 | v3 | dif. (9 cortes) | dif. centro 9.000–10.500 |
+|---|---|---|---|---|
+| 150001 | 435,9 | 431,5 | −4,4 | −6,8 |
+| 333331 | 440,7 | 433,6 | −7,1 | −10,6 |
+| 600017 | 425,4 | 428,5 | +3,1 | +3,0 |
+| 720007 | 424,2 | 429,1 | +4,9 | +1,3 |
+| 910009 | 436,7 | 437,5 | +0,8 | +9,9 |
+
+- **Regla: 2 peores de 5** (hacen falta 4 para pasar a la v4). Diferencia media −0,5 (9 cortes) y −0,6 (centro): por ahora la v3 empata con la v2.
+- La v3 tiene **menos dispersión entre semillas** (428,5–437,5, contra 424,2–440,7 en la v2): mejora las semillas flojas de la v2 y empeora las buenas. Consistente con el semillerío de 30 y con modelos más regularizados.
+- Tiempos: 720007 tardó 12 h (con la BO trabada y el reinicio), 600017 solo 5 h 08 min. En curso desde las 07:28 UTC: 570001 (z739g-a2) y 850009 (z739g-a), los dos en el final training.
