@@ -73,3 +73,8 @@ Errores encontrados y arreglados en el camino:
 - `PARAM$CN$desvios` pasa a leerse del `.env` (`CN_DESVIOS`, por defecto 2,5); la v4 usa **2,0** (`.env.A` y `.env.B`). El log lo registra en la línea `canaritos: ratio 0.2 desvios 2`, que la prueba corta de la v4 controla.
 - Efecto medido con `impo_1.txt` de las 7 semillas de la v3: con 2,0, 4 semillas quedan casi igual (488–633 columnas) y 3 pierden ~85–115 columnas (13–18%; 150001 692→578, 720007 630→517, 910009 673→588). Las que se van rankean por debajo de casi todos los canaritos. Con 1,5 o 1,0 el recorte sería del 10–35%.
 - Contra: la v4 suma un tercer cambio respecto de la v3 (validación en 202107, early stopping, canaritos). Se aceptó porque el efecto es chico y el objetivo es el puntaje del domingo.
+
+## 2026-10-20 15:40 UTC — v3: 570001
+
+- **570001:** v3 442,7 contra 444,0 en la v2 (−1,3; centro −2,9). **Regla: 3 peores de 6**; diferencia media −0,7 (9 cortes).
+- El pico se corrió: la v2 tuvo su máximo en 9.500 (458,664) y la v3 en **10.000 (457,498)** y 10.500 (455,664). 9.000 y 9.500 dieron el mismo puntaje (443,748).
