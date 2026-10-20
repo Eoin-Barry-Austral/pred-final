@@ -84,3 +84,9 @@ Errores encontrados y arreglados en el camino:
 - **850009:** v3 434,7 contra 435,3 en la v2 (−0,6; centro −3,3). **4 peores de 7: se cumple la regla de pasar a la v4.**
 - Balance de la v3 en 7 pares: diferencia media −0,7 (9 cortes) y −1,3 (centro). En la práctica, un empate: optimizar ganancia en 4 meses con datos hasta 202102 no mejoró a la v2 en el público.
 - La tabla de la v2 no tenía los cortes de 850009 y 999953: se completaron desde la lista de envíos de Kaggle que guarda la v3 (`kaggle_submissions.csv`).
+
+## 2026-10-20 19:28 UTC — cambio automático a la v4 (exp. 9950)
+
+- El chequeo de cada 2 h detectó 4 peores de 7, **paró la v3** y corrió la prueba corta de la v4 (exp. 9995, 3% de clientes). Pasaron todos los controles, incluido `canaritos: ratio 0.2 desvios 2`, y lanzó **z739h-a** (empieza por 150001) y **z739h-a2** (empieza por 910009).
+- La v3 quedó con **7 de 10 semillas** terminadas: 450007 se cortó al final de la BO y 999953 recién empezaba. Los checkpoints quedan en el bucket por si se quieren terminar después.
+- Ojo con la prueba corta: con el 3% de clientes, 202107 tiene 4.925 clientes, menos que el corte más chico (8.000). Todos los cortes envían a todos, la ganancia es la misma en cada árbol, y por eso dio `best_iter` 1 y "final training con 1 arboles". Es un artefacto de la prueba, no un error. Hay que confirmar con las primeras evaluaciones reales de la BO que `best_iter` varía y la ganancia es positiva.
