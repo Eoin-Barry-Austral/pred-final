@@ -78,3 +78,9 @@ Errores encontrados y arreglados en el camino:
 
 - **570001:** v3 442,7 contra 444,0 en la v2 (−1,3; centro −2,9). **Regla: 3 peores de 6**; diferencia media −0,7 (9 cortes).
 - El pico se corrió: la v2 tuvo su máximo en 9.500 (458,664) y la v3 en **10.000 (457,498)** y 10.500 (455,664). 9.000 y 9.500 dieron el mismo puntaje (443,748).
+
+## 2026-10-20 19:40 UTC — v3: 850009 → regla cumplida (4 peores de 7)
+
+- **850009:** v3 434,7 contra 435,3 en la v2 (−0,6; centro −3,3). **4 peores de 7: se cumple la regla de pasar a la v4.**
+- Balance de la v3 en 7 pares: diferencia media −0,7 (9 cortes) y −1,3 (centro). En la práctica, un empate: optimizar ganancia en 4 meses con datos hasta 202102 no mejoró a la v2 en el público.
+- La tabla de la v2 no tenía los cortes de 850009 y 999953: se completaron desde la lista de envíos de Kaggle que guarda la v3 (`kaggle_submissions.csv`).
