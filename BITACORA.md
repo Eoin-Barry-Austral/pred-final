@@ -90,3 +90,9 @@ Errores encontrados y arreglados en el camino:
 - El chequeo de cada 2 h detectó 4 peores de 7, **paró la v3** y corrió la prueba corta de la v4 (exp. 9995, 3% de clientes). Pasaron todos los controles, incluido `canaritos: ratio 0.2 desvios 2`, y lanzó **z739h-a** (empieza por 150001) y **z739h-a2** (empieza por 910009).
 - La v3 quedó con **7 de 10 semillas** terminadas: 450007 se cortó al final de la BO y 999953 recién empezaba. Los checkpoints quedan en el bucket por si se quieren terminar después.
 - Ojo con la prueba corta: con el 3% de clientes, 202107 tiene 4.925 clientes, menos que el corte más chico (8.000). Todos los cortes envían a todos, la ganancia es la misma en cada árbol, y por eso dio `best_iter` 1 y "final training con 1 arboles". Es un artefacto de la prueba, no un error. Hay que confirmar con las primeras evaluaciones reales de la BO que `best_iter` varía y la ganancia es positiva.
+
+## 2026-10-20 20:20 UTC — comparación v4 contra v2
+
+- `comparar_pares.R` ahora compara dos versiones cualesquiera (`Rscript comparar_pares.R v2 v4`). Solo usa semillas con los 9 cortes en las dos versiones y suma Wilcoxon pareado desde 5 pares. v2 vs v3 (7 pares): p = 0,80.
+- `agregar_puntajes.R` carga en `z739_vN/resultados/puntajes_publicos.tsv` los envíos de un experimento, desde el `kaggle_submissions.csv` que guarda cada semilla.
+- El chequeo de cada 2 h ahora sigue la v4: carga sus puntajes, compara contra la v2 (y la v3 como dato), actualiza esta bitácora y hace commit. Ya no tiene acciones sobre las VMs.
