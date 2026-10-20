@@ -87,6 +87,9 @@ for SEM in $SEMILLAS; do
   # (R sigue usando CPU pero no avanza: paso con la semilla 150001 de la v2). Al
   # reintentar saltea la BO y los modelos ya grabados. Solo mira las lineas que
   # escribio ESTE intento (LINEA0), no las de intentos anteriores.
+  # v4: tambien si la BO pasa 60 min sin una evaluacion nueva (linea ' GANANCIA ').
+  # Paso con la semilla 720007 de la v3: una evaluacion de 1 h 43 min usando CPU.
+  # Al reintentar, mlrMBO retoma desde HT.RDATA (se graba cada 10 min).
   for INTENTO in 1 2 3; do
     ds bash -lc "
       export PATH=\$HOME/.local/bin:\$PATH
@@ -101,7 +104,7 @@ for SEM in $SEMILLAS; do
       setsid Rscript workflow.R .env $ARG >> \$LOCAL 2>&1 &
       R_PID=\$!
       cpu() { ps -s \$R_PID -o times= | awk '{s += \$1} END {print s + 0}'; }
-      ( ANT=\$(cpu); QUIETO=0
+      ( ANT=\$(cpu); QUIETO=0; NBO=-1; TBO=\$(date -u +%s)
         while sleep 300; do
           AHORA=\$(cpu)
           if [ \$((AHORA - ANT)) -lt 3 ]; then QUIETO=\$((QUIETO + 5)); else QUIETO=0; fi
@@ -122,6 +125,16 @@ for SEM in $SEMILLAS; do
                 pkill -TERM -s \$R_PID; sleep 30; pkill -KILL -s \$R_PID
                 break
               fi;;
+            *'| optimizacion bayesiana'*)
+              NBO_AHORA=\$(tail -n +\$((LINEA0 + 1)) \$LOCAL | grep -c ' GANANCIA ')
+              AHORA_S=\$(date -u +%s)
+              if [ \"\$NBO_AHORA\" != \"\$NBO\" ]; then NBO=\$NBO_AHORA; TBO=\$AHORA_S; fi
+              if [ \$((AHORA_S - TBO)) -ge 3600 ]; then
+                echo \"\$(date -u '+%F %T') | VIGIA: la BO lleva 60 min sin evaluaciones nuevas, lo mato y reintento la semilla\" >> \$LOCAL
+                touch \$COLGADO
+                pkill -TERM -s \$R_PID; sleep 30; pkill -KILL -s \$R_PID
+                break
+              fi;;
           esac
         done ) &
       VIGIA=\$!
@@ -134,7 +147,7 @@ for SEM in $SEMILLAS; do
     RC=$?
     [ "$RC" = "99" ] || break
     mail "$CORRIDA" "R colgado (intento $INTENTO)" \
-      "R paso 30 min sin usar CPU o el final training 90 min sin avances. Lo mate y reintento la semilla desde el checkpoint. Ver $DIR/log_$CORRIDA.txt."
+      "R paso 30 min sin usar CPU, el final training 90 min sin avances o la BO 60 min sin evaluaciones. Lo mate y reintento la semilla desde el checkpoint. Ver $DIR/log_$CORRIDA.txt."
   done
   if ! ds test -f "$FIN"; then
     # rc 1 = error que R ya aviso por mail. Otro rc = R murio sin poder avisar
