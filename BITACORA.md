@@ -114,3 +114,10 @@ Errores encontrados y arreglados en el camino:
 - Además, 720007 eligió 1.635 árboles: ~40 min por modelo final, ~20 h por semilla.
 - **Decisión del usuario:** parar la v4 (z739h-a y z739h-a2 en 0; 333331 quedó en 11/30 y 720007 en 3/30) y buscar mejoras sobre la v2, que vuelve a optimizar AUC. Se pausa el chequeo de cada 2 h.
 - **Balance de la búsqueda por ganancia:** v3 (4 meses) empata con la v2 (−0,7; Wilcoxon p = 0,80), y la v4 (1 mes) pierde ~7. La ganancia como métrica de la BO no mejoró a la AUC.
+
+## 2026-10-21 — v5 preparada (exp. 9850, VMs z739i-*)
+
+- **v5 = v2 (BO por AUC) con dos cambios:** semillerío de **30** (`FT_SEMILLERIO`; las 9 primeras semillas son las de la v2 en el mismo orden, y las 21 siguientes las de la v3) y canaritos con **2,0** desvíos (`CN_DESVIOS`). También guarda `kaggle_submissions.csv`, como la v3.
+- Mismas 10 semillas del pipeline que la v2: comparación pareada con `comparar_pares.R v2 v5`. Ojo: son dos cambios juntos, así que si cambia el puntaje no se sabe cuál de los dos fue. Se aceptó por el tiempo.
+- VMs: `vm/` de la v4 (vigías de CPU, del final training y de la BO); la vigía de la BO ahora cuenta las líneas ` AUC ` además de ` GANANCIA `.
+- Tiempo estimado con los logs de la v2: preprocesamiento ~22 min, BO ~2,3–2,8 h, 30 modelos finales a ~11–17 min cada uno ~5,5–8,5 h. **~8,5–11,5 h por semilla**; con 2 VMs, las 10 semillas en ~50 h.
