@@ -8,7 +8,7 @@ SEMILLAS_PIPELINE=150001
 # 3% de los clientes, BO minima (32 iniciales + 2), 1 modelo final
 PRUEBA_FRACCION=0.03
 
-FT_SEMILLERIO=30
+FT_SEMILLERIO=20
 CN_DESVIOS=2.0
 
 # no sube nada: genera los csv y verifica la credencial
