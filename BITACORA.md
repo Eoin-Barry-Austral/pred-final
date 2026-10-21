@@ -153,3 +153,9 @@ Motivo: después de una semana, los cambios de búsqueda y semillas (v3, v4, v5)
 
 - **910009:** v5 **440,4** contra 436,7 en la v2 (**+3,7**); en el centro 9.000–10.500, **446,9 contra 435,6 (+11,2)**. Máximo 449,7 en 9.500.
 - Primer par a favor de una versión nueva en el centro. La v3 (también con semillerío de 30) había dado 445,6 en el centro para esta semilla: puede ser el semillerío. Es un solo par.
+
+## 2026-10-21 19:25 UTC — plan A: v5 en una VM, v6 en la otra
+
+- Se paró **z739i-a2** (v5; la 720007 recién empezaba). **z739i-a** sigue con la v5 en orden (150001, 333331, …). La 720007 queda marcada como tomada por z739i-a2, así que la VM 1 la saltea.
+- La v6 va con **semillerío de 30** (pedido del usuario: "eso necesito tener sí o sí"). Ahora es v2 + semillerío 30 + variables nuevas + RF en 201907–201909, con canaritos 2,5. Contra la v5 cambia las variables nuevas, el RF y los canaritos (2,5 en vez de 2,0).
+- Con una VM y ~10 h por semilla, la v6 llega a ~5–6 semillas para el sábado a la noche.

@@ -10,7 +10,7 @@ PRUEBA_FRACCION=0.03
 
 FE_NUEVAS=1
 FE_RF_MESES=201907,201908,201909
-FT_SEMILLERIO=9
+FT_SEMILLERIO=30
 CN_DESVIOS=2.5
 
 # no sube nada: genera los csv y verifica la credencial
