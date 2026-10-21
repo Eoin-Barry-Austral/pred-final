@@ -167,3 +167,8 @@ Motivo: después de una semana, los cambios de búsqueda y semillas (v3, v4, v5)
 - **Buena señal:** en el modelo de canaritos de la prueba, varias variables nuevas quedan arriba: `cpayroll_trx_ceros6` en el puesto **4**, `mpayroll_ratiomax12` en el **5**, `ctarjeta_visa_transacciones_ratioavg12` 12, `mcomisiones_ratiomax12` 16, `mprestamos_personales_frec` 17, `mpayroll_frec` 18. Sueldo y recencia aportan información que el modelo no tenía (con el 3% de clientes, es solo una indicación).
 - Lanzada **z739j-a** (v6, semillerío 20, empieza por 150001). La v5 sigue en z739i-a.
 - El chequeo de cada 2 h ahora sigue la v5 y la v6.
+
+## 2026-10-21 22:40 UTC — v5: 150001
+
+- **150001:** v5 432,3 contra 435,9 en la v2 (−3,6); en el centro 437,5 contra 437,8 (−0,3). Pares de la v5: 1 peor de 2; diferencia media +0,1 (9 cortes) y **+5,5 en el centro**.
+- La 150001 en todas las versiones: v2 435,9 · v3 431,5 · v4 429,4 · v5 432,3. En el grupo B (202107 real) fue la segunda peor de 9. Puede que el ranking de esa semilla encaje mal con el 30% público, que es fijo, y no que el modelo sea peor en el privado. No se descarta del ensamble por su puntaje público.
