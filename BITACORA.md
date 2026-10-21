@@ -127,3 +127,9 @@ Errores encontrados y arreglados en el camino:
 - Prueba corta (exp. 9990, 3% de clientes): pasaron todos los controles (`canaritos: ratio 0.2 desvios 2`, `semillerio: 30 modelos`, BO por AUC con 34 evaluaciones, modelo final, credencial de Kaggle, lista de envíos guardada, `TERMINADO`, sin errores ni vigía). Se apagó la VM de prueba.
 - Lanzadas **z739i-a** (empieza por 150001) y **z739i-a2** (empieza por 910009). Fin estimado: viernes 2026-10-23 por la tarde (UTC).
 - El chequeo de cada 2 h se reactivó y ahora sigue la v5 (pares contra la v2).
+
+## 2026-10-21 — ensambles entre versiones (sin subir todavía)
+
+- `ensamble_versiones.R`: ensamble por ranking de corridas de varias versiones (cada corrida pesa igual).
+- Armados en `C:\tmp\lab1\ensamble_final\salida`: v2 (10 corridas; idéntico al ens10 de antes) en 9.500 y 10.000; v2+v3 (17) en 9.500 y 10.000; v2+v3+v4 (19) en 10.000.
+- Cada corrida comparte ~94–95% de sus 10.000 envíos con el ensamble: las versiones se parecen mucho, así que el ensamble entre versiones mezcla poca diversidad.
