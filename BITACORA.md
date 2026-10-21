@@ -107,3 +107,10 @@ Errores encontrados y arreglados en el camino:
 - **2 peores de 2** (9 cortes y centro 9.000–10.500). Diferencia media −7,0 (9 cortes) y −7,0 (centro). Todavía no hay Wilcoxon (hace falta 5 pares).
 - Contra la v3 (dato): 2 peores de 2, diferencia media −5,1 (centro −8,6).
 - Tiempos: cada semilla tardó ~8 h (canaritos ~20 min, BO ~4 h, final training ~4 h). En curso: 333331 (z739h-a) y 720007 (z739h-a2), las dos en la BO.
+
+## 2026-10-21 11:00 UTC — se para la v4; volvemos a la v2 (AUC)
+
+- **v4, 2 pares:** 150001 429,4 (v2 435,9, −6,5) y 910009 429,4 (v2 436,7, −7,4). También por debajo de la v3. Hipótesis: optimizar la ganancia de un solo mes (202107) ajusta la BO al ruido de ese mes. La BO midió las ganancias más altas de todas las versiones (606–619 M) y el público fue el más bajo.
+- Además, 720007 eligió 1.635 árboles: ~40 min por modelo final, ~20 h por semilla.
+- **Decisión del usuario:** parar la v4 (z739h-a y z739h-a2 en 0; 333331 quedó en 11/30 y 720007 en 3/30) y buscar mejoras sobre la v2, que vuelve a optimizar AUC. Se pausa el chequeo de cada 2 h.
+- **Balance de la búsqueda por ganancia:** v3 (4 meses) empata con la v2 (−0,7; Wilcoxon p = 0,80), y la v4 (1 mes) pierde ~7. La ganancia como métrica de la BO no mejoró a la AUC.
