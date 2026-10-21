@@ -96,3 +96,14 @@ Errores encontrados y arreglados en el camino:
 - `comparar_pares.R` ahora compara dos versiones cualesquiera (`Rscript comparar_pares.R v2 v4`). Solo usa semillas con los 9 cortes en las dos versiones y suma Wilcoxon pareado desde 5 pares. v2 vs v3 (7 pares): p = 0,80.
 - `agregar_puntajes.R` carga en `z739_vN/resultados/puntajes_publicos.tsv` los envíos de un experimento, desde el `kaggle_submissions.csv` que guarda cada semilla.
 - El chequeo de cada 2 h ahora sigue la v4: carga sus puntajes, compara contra la v2 (y la v3 como dato), actualiza esta bitácora y hace commit. Ya no tiene acciones sobre las VMs.
+
+## 2026-10-21 05:10 UTC — v4: 150001 y 910009
+
+| semilla | v2 | v4 | dif | dif centro |
+|---|---|---|---|---|
+| 150001 | 435,9 | 429,4 | −6,5 | −5,3 |
+| 910009 | 436,7 | 429,4 | −7,4 | −8,8 |
+
+- **2 peores de 2** (9 cortes y centro 9.000–10.500). Diferencia media −7,0 (9 cortes) y −7,0 (centro). Todavía no hay Wilcoxon (hace falta 5 pares).
+- Contra la v3 (dato): 2 peores de 2, diferencia media −5,1 (centro −8,6).
+- Tiempos: cada semilla tardó ~8 h (canaritos ~20 min, BO ~4 h, final training ~4 h). En curso: 333331 (z739h-a) y 720007 (z739h-a2), las dos en la BO.
