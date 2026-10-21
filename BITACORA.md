@@ -160,3 +160,10 @@ Motivo: después de una semana, los cambios de búsqueda y semillas (v3, v4, v5)
 - La v6 va con **semillerío de 30** (pedido del usuario: "eso necesito tener sí o sí"). Ahora es v2 + semillerío 30 + variables nuevas + RF en 201907–201909, con canaritos 2,5. Contra la v5 cambia las variables nuevas, el RF y los canaritos (2,5 en vez de 2,0).
 - Con una VM y ~10 h por semilla, la v6 llega a ~5–6 semillas para el sábado a la noche.
 - **19:22 UTC: la v5 también pasa a semillerío de 20** (usuario). Se actualizó el `.env` en el bucket y se reinició z739i-a. R relee el `.env` al arrancar y retoma desde los 13 modelos grabados de la 150001, así que esa semilla termina con 20 modelos (7 más). La 910009 ya está hecha con 30 (en `prediccion.txt` se pueden promediar solo los primeros 20). La v6 también va con 20.
+
+## 2026-10-21 19:30 UTC — v6 lanzada
+
+- Prueba corta (exp. 9989, 3% de clientes): pasaron todos los controles. `FE v6: 264 columnas nuevas` (30 claves, 19 de actividad, 12 montos), random forest con 201907–201909, BO por AUC, modelo final, Kaggle y `TERMINADO`, sin errores.
+- **Buena señal:** en el modelo de canaritos de la prueba, varias variables nuevas quedan arriba: `cpayroll_trx_ceros6` en el puesto **4**, `mpayroll_ratiomax12` en el **5**, `ctarjeta_visa_transacciones_ratioavg12` 12, `mcomisiones_ratiomax12` 16, `mprestamos_personales_frec` 17, `mpayroll_frec` 18. Sueldo y recencia aportan información que el modelo no tenía (con el 3% de clientes, es solo una indicación).
+- Lanzada **z739j-a** (v6, semillerío 20, empieza por 150001). La v5 sigue en z739i-a.
+- El chequeo de cada 2 h ahora sigue la v5 y la v6.
