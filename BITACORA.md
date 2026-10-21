@@ -121,3 +121,9 @@ Errores encontrados y arreglados en el camino:
 - Mismas 10 semillas del pipeline que la v2: comparación pareada con `comparar_pares.R v2 v5`. Ojo: son dos cambios juntos, así que si cambia el puntaje no se sabe cuál de los dos fue. Se aceptó por el tiempo.
 - VMs: `vm/` de la v4 (vigías de CPU, del final training y de la BO); la vigía de la BO ahora cuenta las líneas ` AUC ` además de ` GANANCIA `.
 - Tiempo estimado con los logs de la v2: preprocesamiento ~22 min, BO ~2,3–2,8 h, 30 modelos finales a ~11–17 min cada uno ~5,5–8,5 h. **~8,5–11,5 h por semilla**; con 2 VMs, las 10 semillas en ~50 h.
+
+## 2026-10-21 11:20 UTC — v5 lanzada
+
+- Prueba corta (exp. 9990, 3% de clientes): pasaron todos los controles (`canaritos: ratio 0.2 desvios 2`, `semillerio: 30 modelos`, BO por AUC con 34 evaluaciones, modelo final, credencial de Kaggle, lista de envíos guardada, `TERMINADO`, sin errores ni vigía). Se apagó la VM de prueba.
+- Lanzadas **z739i-a** (empieza por 150001) y **z739i-a2** (empieza por 910009). Fin estimado: viernes 2026-10-23 por la tarde (UTC).
+- El chequeo de cada 2 h se reactivó y ahora sigue la v5 (pares contra la v2).
