@@ -148,3 +148,8 @@ Motivo: después de una semana, los cambios de búsqueda y semillas (v3, v4, v5)
 - **Random forest de variables entrenado con 201907–201909** (`FE_RF_MESES`) en vez de 202101–202103: en la v2 sus hojas se arman con etiquetas de meses que después entran al entrenamiento. El efecto esperado es chico (hojas de ≥100 clientes, 3 de 31 meses), pero es lo correcto.
 - El bloque nuevo se probó localmente con un dataset inventado (`z739_v6/test_fe_v6.R`): rachas, ceros en 6 meses (NA en los primeros 5), aceleración, sueldo perdido y frecuencias dan lo esperado.
 - Tiempo estimado: ~5–5,5 h por semilla (como la v2, con unos minutos más de variables y ~265 columnas antes de los canaritos). Con 2 VMs, las 10 semillas en ~27 h.
+
+## 2026-10-21 19:15 UTC — v5: 910009
+
+- **910009:** v5 **440,4** contra 436,7 en la v2 (**+3,7**); en el centro 9.000–10.500, **446,9 contra 435,6 (+11,2)**. Máximo 449,7 en 9.500.
+- Primer par a favor de una versión nueva en el centro. La v3 (también con semillerío de 30) había dado 445,6 en el centro para esta semilla: puede ser el semillerío. Es un solo par.
