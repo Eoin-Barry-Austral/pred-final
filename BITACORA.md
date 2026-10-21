@@ -134,3 +134,17 @@ Errores encontrados y arreglados en el camino:
 - Armados en `C:\tmp\lab1\ensamble_final\salida`: v2 (10 corridas; idéntico al ens10 de antes) en 9.500 y 10.000; v2+v3 (17) en 9.500 y 10.000; v2+v3+v4 (19) en 10.000.
 - Cada corrida comparte ~94–95% de sus 10.000 envíos con el ensamble: las versiones se parecen mucho, así que el ensamble entre versiones mezcla poca diversidad.
 - **Puntajes públicos de los ensambles entre versiones** (en `z739_v2/resultados/ensambles_publicos.tsv`): v2 (10) 443,4 en 9.500 y 444,5 en 10.000; v2+v3 (17) **446,2** en 9.500 y 444,1 en 10.000; v2+v3+v4 (19) 444,5 en 10.000. Todos dan +5 a +9 sobre la semilla promedio en el mismo corte (~438–439), pero **por debajo del ens6 de la v2 (450,9)**, que tiene un subconjunto de esas mismas corridas. Con ~95% de envíos compartidos, una diferencia de 7 puntos entre ens6 y ens10 es ruido del 30% público. Para el privado se espera más del ensamble grande que del ens6 o de la mejor semilla suelta (458,7).
+
+## 2026-10-21 — v6 preparada (exp. 9700, VMs z739j-*, sin correr)
+
+Motivo: después de una semana, los cambios de búsqueda y semillas (v3, v4, v5) mueven ±5 puntos y los primeros del público están ~15 arriba. La v6 cambia **lo que ve el modelo**.
+
+- **v6 = v2** (BO por AUC, semillerío de 9, canaritos 2,5) **con variables nuevas** (`FE_NUEVAS=1`), calculadas después de las tendencias y antes del random forest y de los canaritos (que podan las que no sirvan):
+    - **ventanas de 3 y 12 meses** solo de `ratioavg`, `min` y `ratiomax`, que son las medidas históricas que más pesan en la de 6 (la pendiente `tend6` y `avg6` pesan ~3%), en **30 variables clave**: las de mayor importancia sumada en los modelos de canaritos de 7 semillas de la v3;
+    - **aceleración** (x − 2·lag1 + lag2) de las 30 claves;
+    - **recencia**: meses consecutivos en cero y meses en cero de los últimos 6, en 19 variables de actividad (transacciones, tarjetas, sueldo, homebanking, etc.);
+    - **sueldo**: `sueldo_total`, `perdio_sueldo` (cobraba el mes anterior y este no) y sueldo contra el mes anterior;
+    - **frecuencia del valor exacto** en el mes, en 12 montos clave.
+- **Random forest de variables entrenado con 201907–201909** (`FE_RF_MESES`) en vez de 202101–202103: en la v2 sus hojas se arman con etiquetas de meses que después entran al entrenamiento. El efecto esperado es chico (hojas de ≥100 clientes, 3 de 31 meses), pero es lo correcto.
+- El bloque nuevo se probó localmente con un dataset inventado (`z739_v6/test_fe_v6.R`): rachas, ceros en 6 meses (NA en los primeros 5), aceleración, sueldo perdido y frecuencias dan lo esperado.
+- Tiempo estimado: ~5–5,5 h por semilla (como la v2, con unos minutos más de variables y ~265 columnas antes de los canaritos). Con 2 VMs, las 10 semillas en ~27 h.
