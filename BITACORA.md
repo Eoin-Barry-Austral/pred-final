@@ -215,3 +215,9 @@ Pedido del usuario: probar la genética con los cambios propuestos, en una sola 
     - `DR_METODO` configurable; se corrigió el nombre de las funciones del dólar (`drift_dolarblue` → `drift_dolar_blue`), que hacía fallar esa opción. El usuario eligió quedarse con el IPC: entre 201901 y 202107 el IPC sube ×2,6 y el dólar blue ×4,6.
 - Orden de semillas: 570001, 210011, 333331, 910009, 850009, 150001, 600017, 450007, 999953, 720007.
 - Se paró z739i-a (v5; la 850009 estaba en el random forest) para hacer lugar.
+
+## 2026-10-22 14:25 UTC — v7 lanzada (VM z739k-a)
+
+- **Prueba corta 1** (exp. 9988, 3% de clientes): todo el flujo sin errores. 2020 fuera (BO con 17 meses, final con 19), genética con 4 muestras y 1 ronda, la ganadora no pasó el control y siguió sin variables genéticas.
+- **Prueba corta 2** (exp. 9987, 2 semillas, `GA_FORZAR=1` solo para la prueba): la ganadora entra al dataset (gen_01 con lag1, lag2, delta1 y delta2), y la **segunda semilla reusa las fórmulas sin volver a buscar** ("ya estaba terminada, uso sus ganadoras"). `gen_01` aparece entre las variables importantes del modelo final. Se sacó `GA_FORZAR` de los `.env`.
+- **Tiempos estimados** (con los de la v5 escalados por las filas sin 2020: BO ×0,59 y final ×0,61): preprocesamiento ~25 min, BO ~1,6–1,8 h, 20 modelos finales ~2,5–3,5 h y Kaggle ~15 min: **~5 h por semilla** (4,5–6,5). La primera suma la genética (2–5 h, tope de 8): **~8–11 h**.

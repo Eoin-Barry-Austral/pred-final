@@ -1645,7 +1645,7 @@ if (GA_ACTIVA) {
                         mejora= c(m_ga, m_azar)),
              ARCH_GA_CTRL, sep= "\t", append= file.exists(ARCH_GA_CTRL))
       p90 <- quantile(m_azar, 0.9, na.rm= TRUE)
-      pasa <- isTRUE(!is.na(m_ga) && m_ga > 0 && m_ga > p90)
+      pasa <- isTRUE(!is.na(m_ga) && m_ga > 0 && m_ga > p90) || Sys.getenv("GA_FORZAR", "0") == "1"   # FORZAR: solo para probar
       puesto <- 1L + sum(m_azar >= m_ga, na.rm= TRUE)
       fila <- data.table(ronda= r, nombre= sprintf("gen_%02d", r), formula= mejor, mejora_busqueda= mejora_b,
         mejora_control= m_ga, p90_azar= p90, puesto_control= puesto, de= length(azar) + 1L,

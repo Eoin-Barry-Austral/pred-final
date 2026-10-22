@@ -7,10 +7,10 @@
 GRUPO=B
 
 # experimento nuevo: exp/WF9600_s<semilla>; la genetica en exp/WF9600_ga
-EXPERIMENTO=9988
+EXPERIMENTO=9987
 
 # semillas buenas primero (promedio publico de la v2)
-SEMILLAS_PIPELINE=570001
+SEMILLAS_PIPELINE=570001,210011
 PRUEBA_FRACCION=0.03
 
 FT_SEMILLERIO=20
