@@ -269,3 +269,15 @@ v5 peor que la v2: 2 de 4 (9 cortes) y 2 de 4 (centro). Diferencia media: -0.5 (
 - **Sacar 2020: v7 contra v5 en la misma semilla, +5,8 (centro +5,7).** Un solo par: es la primera medición del efecto, no una conclusión.
 - La 570001 (la mejor de la v2) cae en la v5 (−12,8) y en la v7 (−7,0). En parte es regresión a la media (en la v3 dio 442,7).
 - **v5 con 5 pares: diferencia media −3,0 (centro −1,8), Wilcoxon p = 0,59.** No le gana a la v2.
+
+## 2026-10-22 22:30 UTC — fallo: la 210011 de la v7 arrancó sin genética; auditoría de todas las corridas
+
+- **Fallo:** la VM z739k-a corrió la genética y escribió `genetica_rondas.txt` (todas descartadas). El cambio a "aceptadas" se hizo desde afuera, en la nube, y esa VM siguió leyendo su copia en caché del bucket montado (gcsfuse). La 210011 arrancó con "ninguna fórmula pasó el control". La z739k-a2, recién creada, leyó bien la versión nueva (333331 con 10 columnas genéticas).
+- **Arreglo:** reinicio de z739k-a a las 22:20 UTC. La 210011 retomó del checkpoint de canaritos con "genetica: agregadas 10 columnas". Su BO retoma desde `HT.RDATA` (62 evaluaciones sin las fórmulas, el resto con ellas).
+- **Auditoría** (`auditoria/auditar.R`): para cada log de las 36 corridas (v2 a v7), la configuración que el log dice que usó contra la esperada.
+    - Canaritos: v4, v5 y v7 = 2; v6 = 2,5; v2 y v3 fijos en 2,5 en el script. OK.
+    - Métrica y meses de la BO: v2 AUC (10/10); v3 ganancia en 202104–202107 (8/8 que llegaron a la BO); v4 ganancia en 202107 con early stopping (4/4); v7 17 meses sin 2020 y final con 19. OK.
+    - Modelos finales: v2 9 (10/10), v3 30, v4 30, v5 20 (la 910009 con 30, decidido así), v6 20. OK.
+    - v6: 264 columnas nuevas y RF con 201907–201909. OK.
+    - v7: 570001 sin genética (esperado, antes del cambio de criterio), 333331 y 210011 (después del reinicio) con 10 columnas. OK.
+    - **El de la 210011 es el único caso** en que una corrida usó otra configuración que la pedida. Los otros cambios de configuración a mitad de corrida (la v5 de 30 a 20 modelos) se hicieron con reinicio de la VM y el log lo confirma ("semillerio: 20 modelos").
