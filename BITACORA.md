@@ -221,3 +221,16 @@ Pedido del usuario: probar la genética con los cambios propuestos, en una sola 
 - **Prueba corta 1** (exp. 9988, 3% de clientes): todo el flujo sin errores. 2020 fuera (BO con 17 meses, final con 19), genética con 4 muestras y 1 ronda, la ganadora no pasó el control y siguió sin variables genéticas.
 - **Prueba corta 2** (exp. 9987, 2 semillas, `GA_FORZAR=1` solo para la prueba): la ganadora entra al dataset (gen_01 con lag1, lag2, delta1 y delta2), y la **segunda semilla reusa las fórmulas sin volver a buscar** ("ya estaba terminada, uso sus ganadoras"). `gen_01` aparece entre las variables importantes del modelo final. Se sacó `GA_FORZAR` de los `.env`.
 - **Tiempos estimados** (con los de la v5 escalados por las filas sin 2020: BO ×0,59 y final ×0,61): preprocesamiento ~25 min, BO ~1,6–1,8 h, 20 modelos finales ~2,5–3,5 h y Kaggle ~15 min: **~5 h por semilla** (4,5–6,5). La primera suma la genética (2–5 h, tope de 8): **~8–11 h**.
+
+## 2026-10-22 15:10 UTC — v5/v7: v5 600017
+
+v5 (exp 9850) contra v2, por semilla (media de los 9 cortes y centro 9.000–10.500):
+
+| semilla | v2 | v5 | centro v2 | centro v5 | dif | dif centro |
+|---|---|---|---|---|---|---|
+| 150001 | 435.9 | 432.3 | 437.8 | 437.5 | -3.6 | -0.3 |
+| 333331 | 440.7 | 437.3 | 443.7 | 439.5 | -3.3 | -4.2 |
+| 600017 | 425.4 | 426.5 | 428.3 | 430.8 | +1.0 | +2.5 |
+| 910009 | 436.7 | 440.4 | 435.6 | 446.9 | +3.7 | +11.2 |
+
+v5 peor que la v2: 2 de 4 (9 cortes) y 2 de 4 (centro). Diferencia media: -0.5 (9 cortes), +2.3 (centro). Sin p de Wilcoxon todavía (pocas semillas). La v7 todavía no tiene semillas terminadas (sigue la genética en la 570001).
