@@ -198,3 +198,9 @@ Motivo: después de una semana, los cambios de búsqueda y semillas (v3, v4, v5)
 - En el modelo final de la v6, las 5 variables más importantes son `rf_*`, del **random forest entrenado con 201907–201909** (el cambio de meses del RF). Después vienen variables nuevas (`mprestamos_personales_ratiomax3`, `mcuentas_saldo_min3`, `cdescubierto_preacordado_ratioavg12`, `mprestamos_personales_frec`, `cpayroll_trx_mesesencero`).
 - Hipótesis, sin poder separarlas con lo que hay: (1) el RF de 2019 arma hojas que funcionan hasta 202107 (el final training las "corrige" con 31 meses) pero describen peor a 202109; (2) alguna variable nueva se comporta distinto en 202108–202109 (por ejemplo, una variable de actividad mal cargada en esos meses que dispara las rachas en cero). Confirmarlo requiere mirar el dataset de 202109.
 - Lección: subir la AUC de validación en 202107 no garantiza nada en 202109. Pasó con las mejoras de la BO por ganancia (v3, v4) y ahora con las variables nuevas.
+
+## 2026-10-22 13:40 UTC — se para la v6; las 2 VMs a la v5, priorizando semillas
+
+- **Se paró la v6** (z739j-a en 0) después de la 150001 (411,4). **z739i-a2 vuelve a la v5**, así que quedan las 2 VMs en la v5 (semillerío 20).
+- **Prioridad por semillas buenas en el pasado** (pedido del usuario): se reordenó `SEMILLAS_PIPELINE` en el `.env` del bucket para que la VM 2 (que recorre la lista al revés) arranque por **570001** (v2 444,0) y **210011** (439,6). La VM 1 leyó la lista al arrancar y sigue con su orden: después de la 600017 toma la **850009** (435,3). Las flojas de la v2 (450007, 999953, 720007) quedan para el final.
+- Quedan 6 semillas de la v5 y ~7 h por semilla: con 2 VMs terminarían el viernes; el orden asegura que las mejores entren aunque algo se demore.
