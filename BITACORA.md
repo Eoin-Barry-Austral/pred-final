@@ -241,3 +241,14 @@ v5 peor que la v2: 2 de 4 (9 cortes) y 2 de 4 (centro). Diferencia media: -0.5 (
 - Lectura: la ganancia de agregar fórmulas está **repartida**. Casi cualquier combinación de las 30 claves suma algo (los árboles no arman bien diferencias ni ratios) y ninguna se destaca, así que la genética no encuentra nada mejor que el azar.
 - **Decisión del usuario:** el control original contesta "¿la genética le gana al azar?", pero para la competencia importa "¿agregarla es mejor que nada?". **Nuevo criterio: queda toda ganadora con mejora positiva en el control.** Se aplica al terminar la genética, marcando `aceptada=TRUE` en `exp/WF9600_ga/genetica_rondas.txt` (el original queda en `z739v7/ga_rondas/`).
 - Consecuencia: la **570001 de la v7 queda sin genética** (mide solo el efecto de sacar 2020) y **las siguientes semillas** (210011 en adelante) usan las fórmulas aceptadas. Riesgo: la v6 también mejoraba la AUC y se desplomó en Kaggle, pero acá son 5 columnas por fórmula, contra 264.
+
+## 2026-10-22 17:33 UTC — v7: genética terminada (2 de 3 fórmulas entran)
+
+| Ronda | Fórmula | Mejora AUC búsqueda | Mejora AUC control | p90 azar | Puesto | Entra |
+|---|---|---|---|---|---|---|
+| 1 | `(mprestamos_personales - ctrx_quarter) - mrentabilidad_annual` | +0,00109 | **+0,00143** | +0,00183 | 6/20 | **sí** |
+| 2 | `(mprestamos_personales * ccaja_ahorro) * cproductos` | +0,00130 | **+0,00062** | +0,00113 | 7/20 | **sí** |
+| 3 | `(mcomisiones + mrentabilidad) - vm_mpagominimo` | +0,00087 | −0,00005 | +0,00150 | 16/20 | no |
+
+- ~2,8 h en total (~26 s por medición). Ninguna le gana al azar (la ganancia está repartida). Con el criterio de "mejora positiva en el control" quedan las rondas 1 y 2: `gen_01` y `gen_02`, cada una con lag1, lag2, delta1 y delta2, para la 210011 y las semillas siguientes. La ronda 3 no se desinfló en el control: se perdió.
+- Archivos: `z739_v7/resultados/genetica_rondas_original.txt` (lo que decidió el script) y `genetica_rondas_aceptadas.txt` (lo que usan las semillas).
