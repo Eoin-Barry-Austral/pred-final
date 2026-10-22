@@ -234,3 +234,10 @@ v5 (exp 9850) contra v2, por semilla (media de los 9 cortes y centro 9.000–10.
 | 910009 | 436.7 | 440.4 | 435.6 | 446.9 | +3.7 | +11.2 |
 
 v5 peor que la v2: 2 de 4 (9 cortes) y 2 de 4 (centro). Diferencia media: -0.5 (9 cortes), +2.3 (centro). Sin p de Wilcoxon todavía (pocas semillas). La v7 todavía no tiene semillas terminadas (sigue la genética en la 570001).
+
+## 2026-10-22 16:00 UTC — v7: cambio de criterio de la genética (decidido con el control a la vista)
+
+- Ronda 1: `(mprestamos_personales - ctrx_quarter) - mrentabilidad_annual`. Mejora de AUC de +0,00109 en la búsqueda y **+0,00143 en el control** (202103 y 202106, otra semilla). Pero quedó 6.ª de 20 contra las fórmulas al azar (percentil 90 del azar: +0,00183). Descartada con el criterio original.
+- Lectura: la ganancia de agregar fórmulas está **repartida**. Casi cualquier combinación de las 30 claves suma algo (los árboles no arman bien diferencias ni ratios) y ninguna se destaca, así que la genética no encuentra nada mejor que el azar.
+- **Decisión del usuario:** el control original contesta "¿la genética le gana al azar?", pero para la competencia importa "¿agregarla es mejor que nada?". **Nuevo criterio: queda toda ganadora con mejora positiva en el control.** Se aplica al terminar la genética, marcando `aceptada=TRUE` en `exp/WF9600_ga/genetica_rondas.txt` (el original queda en `z739v7/ga_rondas/`).
+- Consecuencia: la **570001 de la v7 queda sin genética** (mide solo el efecto de sacar 2020) y **las siguientes semillas** (210011 en adelante) usan las fórmulas aceptadas. Riesgo: la v6 también mejoraba la AUC y se desplomó en Kaggle, pero acá son 5 columnas por fórmula, contra 264.
