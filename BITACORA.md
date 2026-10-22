@@ -252,3 +252,20 @@ v5 peor que la v2: 2 de 4 (9 cortes) y 2 de 4 (centro). Diferencia media: -0.5 (
 
 - ~2,8 h en total (~26 s por medición). Ninguna le gana al azar (la ganancia está repartida). Con el criterio de "mejora positiva en el control" quedan las rondas 1 y 2: `gen_01` y `gen_02`, cada una con lag1, lag2, delta1 y delta2, para la 210011 y las semillas siguientes. La ronda 3 no se desinfló en el control: se perdió.
 - Archivos: `z739_v7/resultados/genetica_rondas_original.txt` (lo que decidió el script) y `genetica_rondas_aceptadas.txt` (lo que usan las semillas).
+
+## 2026-10-22 21:00 UTC — 570001: v2 vs v5 vs v7 (sin 2020)
+
+| Corte | v2 | v5 | v7 (sin 2020, sin genética) |
+|---|---|---|---|
+| 8.000 | 428,0 | 414,0 | 431,7 |
+| 9.000 | 455,3 | 420,2 | 426,6 |
+| 9.500 | 458,7 | 424,1 | 439,4 |
+| 10.000 | 452,7 | 449,5 | 448,1 |
+| 10.500 | 445,7 | 445,6 | 448,3 |
+| 12.000 | 427,0 | 429,9 | 434,0 |
+| **Promedio 9 cortes** | **444,0** | **431,2** | **437,0** |
+| Centro 9.000–10.500 | 453,1 | 434,9 | 440,6 |
+
+- **Sacar 2020: v7 contra v5 en la misma semilla, +5,8 (centro +5,7).** Un solo par: es la primera medición del efecto, no una conclusión.
+- La 570001 (la mejor de la v2) cae en la v5 (−12,8) y en la v7 (−7,0). En parte es regresión a la media (en la v3 dio 442,7).
+- **v5 con 5 pares: diferencia media −3,0 (centro −1,8), Wilcoxon p = 0,59.** No le gana a la v2.
