@@ -190,3 +190,11 @@ Motivo: después de una semana, los cambios de búsqueda y semillas (v3, v4, v5)
 - v5 peor que la v2 en **2 de 3** (9 cortes y centro). Diferencia media **−1,1** (9 cortes) y **+2,2** en el centro. Sin p de Wilcoxon todavía (pocos pares).
 - La única a favor (910009) es la que se hizo con semillerío de 30; las dos con 20 quedan abajo.
 - Estado: v5 600017 en la BO (~45 de 82), termina ~13:30–14:00 UTC. v6 150001 con 10 de 20 modelos finales (~35 min cada uno), sube a Kaggle ~12:45 UTC.
+
+## 2026-10-22 13:30 UTC — v6: 150001 se desploma en Kaggle
+
+- **v6 150001: 411,4** (centro 414,8), contra **435,9 en la v2 (−24,5)** y 432,3 en la v5 (−20,9). Es más de 3 veces el ruido entre semillas. Y eso que tuvo **la mejor AUC de la BO de todas las corridas (0,9415 en 202107)**.
+- Las predicciones de 202109 se parecen bastante a las de la v2 (Spearman 0,973), pero comparten solo el **87% de los primeros 10.000** (entre versiones parecidas, ~95%). Unos 1.300 clientes distintos cerca del corte explican la caída.
+- En el modelo final de la v6, las 5 variables más importantes son `rf_*`, del **random forest entrenado con 201907–201909** (el cambio de meses del RF). Después vienen variables nuevas (`mprestamos_personales_ratiomax3`, `mcuentas_saldo_min3`, `cdescubierto_preacordado_ratioavg12`, `mprestamos_personales_frec`, `cpayroll_trx_mesesencero`).
+- Hipótesis, sin poder separarlas con lo que hay: (1) el RF de 2019 arma hojas que funcionan hasta 202107 (el final training las "corrige" con 31 meses) pero describen peor a 202109; (2) alguna variable nueva se comporta distinto en 202108–202109 (por ejemplo, una variable de actividad mal cargada en esos meses que dispara las rachas en cero). Confirmarlo requiere mirar el dataset de 202109.
+- Lección: subir la AUC de validación en 202107 no garantiza nada en 202109. Pasó con las mejoras de la BO por ganancia (v3, v4) y ahora con las variables nuevas.
