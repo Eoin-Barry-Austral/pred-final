@@ -172,3 +172,9 @@ Motivo: después de una semana, los cambios de búsqueda y semillas (v3, v4, v5)
 
 - **150001:** v5 432,3 contra 435,9 en la v2 (−3,6); en el centro 437,5 contra 437,8 (−0,3). Pares de la v5: 1 peor de 2; diferencia media +0,1 (9 cortes) y **+5,5 en el centro**.
 - La 150001 en todas las versiones: v2 435,9 · v3 431,5 · v4 429,4 · v5 432,3. En el grupo B (202107 real) fue la segunda peor de 9. Puede que el ranking de esa semilla encaje mal con el 30% público, que es fijo, y no que el modelo sea peor en el privado. No se descarta del ensamble por su puntaje público.
+
+## 2026-10-22 01:30 UTC — v6: la BO de la 150001 sale de la banda de la v2
+
+- **Mejor AUC de la BO, v6 150001: 0,94150**, contra 0,93982 en la v2 y 0,93972 en la v5 para la misma semilla (+0,0017). En las 10 semillas de la v2 la mejor AUC estuvo entre 0,9390 y 0,9400; la v3, la v4 y la v5 quedaron dentro de esa banda. Es la primera versión que sale de la banda. Las variables nuevas usan solo el mes actual y los anteriores.
+- Hiperparámetros parecidos a la v2 (1.014 árboles y 1.137 hojas, contra 1.006 y 955), pero con `feature_fraction` 0,32 (la v2 usaba 0,07) y más columnas: **cada modelo final tarda ~39 min** (la v5 ~15–20). Con 20 modelos, la 150001 de la v6 sube a Kaggle ~14:00 UTC.
+- v5 333331: mejor AUC 0,93977 (v2 0,94003); ~15 min por modelo, Kaggle ~06:20 UTC.
