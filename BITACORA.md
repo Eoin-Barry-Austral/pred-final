@@ -204,3 +204,14 @@ Motivo: después de una semana, los cambios de búsqueda y semillas (v3, v4, v5)
 - **Se paró la v6** (z739j-a en 0) después de la 150001 (411,4). **z739i-a2 vuelve a la v5**, así que quedan las 2 VMs en la v5 (semillerío 20).
 - **Prioridad por semillas buenas en el pasado** (pedido del usuario): se reordenó `SEMILLAS_PIPELINE` en el `.env` del bucket para que la VM 2 (que recorre la lista al revés) arranque por **570001** (v2 444,0) y **210011** (439,6). La VM 1 leyó la lista al arrancar y sigue con su orden: después de la 600017 toma la **850009** (435,3). Las flojas de la v2 (450007, 999953, 720007) quedan para el final.
 - Quedan 6 semillas de la v5 y ~7 h por semilla: con 2 VMs terminarían el viernes; el orden asegura que las mejores entren aunque algo se demore.
+
+## 2026-10-22 15:45 UTC — v7 preparada: genética + sin 2020 (exp. 9600, VM z739k-a)
+
+Pedido del usuario: probar la genética con los cambios propuestos, en una sola VM, sin 2020 en el entrenamiento y con las semillas buenas primero. La otra VM sigue con la v5 (570001).
+
+- **v7 = v5** (BO por AUC, semillerío 20, canaritos 2,0, **deflación por IPC**) con:
+    - **2020 fuera de todo entrenamiento** (`MESES_EXCLUIR`): BO (17 meses), final training (19 meses) y fitness de la genética. 2020 sigue en el dataset para los lags y las tendencias de 2021.
+    - **Genética** (`GA_ACTIVA=1`), **una sola búsqueda para todas las semillas** (la corre la primera semilla y graba en `exp/WF9600_ga/`). Va **después de canaritos**: el fitness usa ~600 columnas (rápido) y las ganadoras no pueden ser borradas. Fitness: **mejora de AUC (BAJA+2) promedio en 202104 y 202105**, con LightGBM chico (100 árboles) y 10% de CONTINUA. Fórmulas de 2 o 3 de las **30 variables clave** con + − × ÷. Control en **202103 y 202106**, otra semilla, contra 19 fórmulas al azar: queda si mejora y supera al percentil 90 del azar. 3 rondas de 20×10, con un tope de 8 h. Cada ganadora entra con lag1, lag2, delta1 y delta2.
+    - `DR_METODO` configurable; se corrigió el nombre de las funciones del dólar (`drift_dolarblue` → `drift_dolar_blue`), que hacía fallar esa opción. El usuario eligió quedarse con el IPC: entre 201901 y 202107 el IPC sube ×2,6 y el dólar blue ×4,6.
+- Orden de semillas: 570001, 210011, 333331, 910009, 850009, 150001, 600017, 450007, 999953, 720007.
+- Se paró z739i-a (v5; la 850009 estaba en el random forest) para hacer lugar.
