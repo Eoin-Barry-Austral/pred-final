@@ -347,3 +347,20 @@ Pedido del usuario: la genética medida en las 5 semillas más fuertes, no en un
 - Contra la v7 cambian dos cosas (genética de 5 semillas y sacar 202101–202102): si cambia el puntaje, no se sabe cuál de las dos fue.
 - **Repetición de la 570001 con genética (exp. 9601), priorizada:** cuando la 999953 de la v7 termine (~14:15 UTC), se para z739k-a y se lanza z739k-b con el script de la v7 y `.env.B` = exp. 9601, semilla 570001, sube a Kaggle. Antes se copiaron `genetica_rondas.txt` (con las rondas 1 y 2 aceptadas), el log, el control y `GENETICA_TERMINADA` de `exp/WF9600_ga` a `exp/WF9601_ga`, así no vuelve a buscar. Es la medición limpia del efecto de la genética: 570001 v7 sin genética (437,0) contra 570001 v7 con genética.
 - **v8 con 5 rondas de genética** (usuario): `GA_RONDAS=5` y tope `GA_HORAS_MAX=12`. Hasta 5 fórmulas, o sea hasta 25 columnas. La genética tardaría ~11–12 h y la primera semilla de la v8 sale el sábado ~04:30–05:00 UTC.
+
+## 2026-10-23 13:15 UTC — v5/v7: v7 850009
+
+- **850009 v7: 434,9** (centro 435,8; máximo 444,2 en 11.000). v2 435,3 (**−0,4**; centro −5,8). No hay par de la v5.
+
+| Semilla | v2 | v7 | Dif. | Dif. centro |
+|---|---|---|---|---|
+| 210011 | 439,6 | 437,9 | −1,6 | −6,4 |
+| 333331 | 440,7 | 442,4 | +1,7 | +3,1 |
+| 570001 | 444,0 | 437,0 | −7,0 | −12,5 |
+| 720007 | 424,2 | 426,4 | +2,2 | +2,0 |
+| 850009 | 435,3 | 434,9 | −0,4 | −5,8 |
+| 910009 | 436,7 | 444,5 | +7,7 | +15,5 |
+
+- **v7 contra v2: 3 peores de 6** (centro 3 de 6). Diferencia media +0,4 (centro −0,7). Wilcoxon p = 0,675.
+- v7 contra v5: 0 peores de 3, +5,0 (centro +5,8), sin cambios. v5 contra v2: 3 de 5, −3,0 (centro −1,8), p = 0,59, sin cambios.
+- Estado: 999953 en modelos finales (11 de 20), termina ~14:20 UTC. Faltan 150001, 600017 y 450007. La v5 sigue parada.
