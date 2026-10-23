@@ -371,3 +371,21 @@ Pedido del usuario: la genética medida en las 5 semillas más fuertes, no en un
 - **Prueba corta 2 (exp. 9985): pasó.** Reusa el checkpoint, saca 14 meses (BO con 15, final con 17), arma las muestras de 2 semillas (en la prueba), corre la genética con criterio "positiva" (la fórmula de la prueba dio negativo en el control y se descartó bien), BO, modelo final, Kaggle y `TERMINADO`.
 - **v8 real:** z739l-a con 5 rondas de genética (tope de 12 h) medidas en las 5 semillas fuertes de la v7. Semillas en orden 910009, 333331, 570001, 210011, 850009, …
 - Pendiente: la VM 2 de la v7 (z739k-a2) reservó la **150001** (`EN_CURSO`) justo antes de pararse. Hay que relanzar z739k-a2 para que la corra (z739k-a la saltea).
+
+## 2026-10-23 15:10 UTC — v5/v7: v7 999953
+
+- **999953 v7: 421,6** (centro 417,8). v2 425,8 (**−4,1**; centro −12,9). No hay par de la v5. (El puntaje ya estaba en la tabla desde el commit anterior; acá queda la sección.)
+
+| Semilla | v2 | v7 | Dif. | Dif. centro |
+|---|---|---|---|---|
+| 210011 | 439,6 | 437,9 | −1,6 | −6,4 |
+| 333331 | 440,7 | 442,4 | +1,7 | +3,1 |
+| 570001 | 444,0 | 437,0 | −7,0 | −12,5 |
+| 720007 | 424,2 | 426,4 | +2,2 | +2,0 |
+| 850009 | 435,3 | 434,9 | −0,4 | −5,8 |
+| 910009 | 436,7 | 444,5 | +7,7 | +15,5 |
+| 999953 | 425,8 | 421,6 | −4,1 | −12,9 |
+
+- **v7 contra v2: 4 peores de 7** (centro 4 de 7). Diferencia media −0,2 (centro −2,4). Wilcoxon p = 1,00.
+- v7 contra v5: 0 peores de 3, +5,0 (centro +5,8), sin cambios. v5 contra v2: 3 de 5, −3,0 (centro −1,8), p = 0,59, sin cambios.
+- Estado: z739l-a (v8, 910009) en la genética, ronda 1 generación 3. z739k-b (exp. 9601, 570001 con genética) en la BO, ~44 de 82. La 150001 de la v7 quedó en `FE intra-mes` desde las 13:12 (z739k-a2 parada); faltan también 600017 y 450007. La v5 sigue parada.
