@@ -302,3 +302,18 @@ v5 peor que la v2: 2 de 4 (9 cortes) y 2 de 4 (centro). Diferencia media: -0.5 (
 - **v7 contra v2: 2 peores de 3** (centro 2 de 3). Diferencia media −2,3 (centro −5,3). Sin p de Wilcoxon todavía.
 - v7 contra v5: 0 peores de 2, +5,4 (centro +6,5), sin cambios. v5 contra v2: 3 de 5, −3,0 (centro −1,8), p = 0,59, sin cambios.
 - Estado: las 2 VMs (z739k-a y z739k-a2) corren la v7; la v5 está parada desde ~21:00 UTC del 22 (la 210011 de la v5 quedó en el FE).
+
+## 2026-10-23 07:20 UTC — v5/v7: v7 910009
+
+- **910009 v7: 444,5** (centro 451,1; máximo 455,6 en 10.000). v2 436,7 (**+7,7**; centro +15,5), v5 440,4 (**+4,0**; centro +4,3). Es el mejor promedio de la v7 hasta ahora.
+
+| Semilla | v2 | v7 | Dif. | Dif. centro |
+|---|---|---|---|---|
+| 210011 | 439,6 | 437,9 | −1,6 | −6,4 |
+| 333331 | 440,7 | 442,4 | +1,7 | +3,1 |
+| 570001 | 444,0 | 437,0 | −7,0 | −12,5 |
+| 910009 | 436,7 | 444,5 | +7,7 | +15,5 |
+
+- **v7 contra v2: 2 peores de 4** (centro 2 de 4). Diferencia media +0,2 (centro −0,1). Sin p de Wilcoxon todavía.
+- **v7 contra v5: 0 peores de 3**, +5,0 (centro +5,8). v5 contra v2: 3 de 5, −3,0, p = 0,59, sin cambios.
+- Estado: las 2 VMs corren la v7 (720007 en modelos finales, 6 de 20; la otra arranca la siguiente semilla). La v5 sigue parada.
