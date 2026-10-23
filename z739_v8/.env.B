@@ -7,7 +7,7 @@
 # Lo lee vm/lanzar.sh A (VM z739l-a). Formato KEY=valor, sin espacios ni comillas.
 
 GRUPO=B
-EXPERIMENTO=9986
+EXPERIMENTO=9985
 SEMILLAS_PIPELINE=570001
 PRUEBA_FRACCION=0.03
 

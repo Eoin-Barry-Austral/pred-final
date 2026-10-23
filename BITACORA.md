@@ -364,3 +364,10 @@ Pedido del usuario: la genética medida en las 5 semillas más fuertes, no en un
 - **v7 contra v2: 3 peores de 6** (centro 3 de 6). Diferencia media +0,4 (centro −0,7). Wilcoxon p = 0,675.
 - v7 contra v5: 0 peores de 3, +5,0 (centro +5,8), sin cambios. v5 contra v2: 3 de 5, −3,0 (centro −1,8), p = 0,59, sin cambios.
 - Estado: 999953 en modelos finales (11 de 20), termina ~14:20 UTC. Faltan 150001, 600017 y 450007. La v5 sigue parada.
+
+## 2026-10-23 13:30 UTC — v8 lanzada (z739l-a)
+
+- **Prueba corta 1 (exp. 9986): falló** con `could not find function "lgb.train"`. Al retomar desde un checkpoint (el atajo de la v8), el script se saltea la parte que carga LightGBM, y la genética no podía entrenar. En la v7 no pasaba porque su genética corrió en una semilla procesada desde cero. **Arreglo:** cargar `lightgbm` al principio del bloque de la genética (en la v7 y en la v8).
+- **Prueba corta 2 (exp. 9985): pasó.** Reusa el checkpoint, saca 14 meses (BO con 15, final con 17), arma las muestras de 2 semillas (en la prueba), corre la genética con criterio "positiva" (la fórmula de la prueba dio negativo en el control y se descartó bien), BO, modelo final, Kaggle y `TERMINADO`.
+- **v8 real:** z739l-a con 5 rondas de genética (tope de 12 h) medidas en las 5 semillas fuertes de la v7. Semillas en orden 910009, 333331, 570001, 210011, 850009, …
+- Pendiente: la VM 2 de la v7 (z739k-a2) reservó la **150001** (`EN_CURSO`) justo antes de pararse. Hay que relanzar z739k-a2 para que la corra (z739k-a la saltea).

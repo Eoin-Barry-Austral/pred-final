@@ -1454,6 +1454,8 @@ marca("dataset listo:", nrow(dataset), "filas x", ncol(dataset), "columnas")
 #     entran al dataset y canaritos no las puede borrar
 # Retoma: genetica_log.txt es tambien el cache (misma semilla = mismo camino)
 if (GA_ACTIVA) {
+  if (!require("lightgbm")) install.packages("lightgbm")   # al retomar del checkpoint no se cargo antes
+  require("lightgbm")
   if (!require("gramEvol")) install.packages("gramEvol")
   require("gramEvol")
   setorder(dataset, numero_de_cliente, foto_mes)
