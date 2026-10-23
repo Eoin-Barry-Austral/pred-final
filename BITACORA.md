@@ -317,3 +317,19 @@ v5 peor que la v2: 2 de 4 (9 cortes) y 2 de 4 (centro). Diferencia media: -0.5 (
 - **v7 contra v2: 2 peores de 4** (centro 2 de 4). Diferencia media +0,2 (centro −0,1). Sin p de Wilcoxon todavía.
 - **v7 contra v5: 0 peores de 3**, +5,0 (centro +5,8). v5 contra v2: 3 de 5, −3,0, p = 0,59, sin cambios.
 - Estado: las 2 VMs corren la v7 (720007 en modelos finales, 6 de 20; la otra arranca la siguiente semilla). La v5 sigue parada.
+
+## 2026-10-23 11:10 UTC — v5/v7: v7 720007
+
+- **720007 v7: 426,4** (centro 431,8; máximo 433,4 en 10.000). v2 424,2 (**+2,2**; centro +2,0). No hay par de la v5. Es la semilla más floja de la v2 y también de la v7.
+
+| Semilla | v2 | v7 | Dif. | Dif. centro |
+|---|---|---|---|---|
+| 210011 | 439,6 | 437,9 | −1,6 | −6,4 |
+| 333331 | 440,7 | 442,4 | +1,7 | +3,1 |
+| 570001 | 444,0 | 437,0 | −7,0 | −12,5 |
+| 720007 | 424,2 | 426,4 | +2,2 | +2,0 |
+| 910009 | 436,7 | 444,5 | +7,7 | +15,5 |
+
+- **v7 contra v2: 2 peores de 5** (centro 2 de 5). Diferencia media +0,6 (centro +0,3). Wilcoxon p = 0,59.
+- v7 contra v5: 0 peores de 3, +5,0 (centro +5,8), sin cambios. v5 contra v2: 3 de 5, −3,0, p = 0,59, sin cambios.
+- Estado: 850009 en modelos finales (9 de 20) y 999953 en la BO. Faltan 150001, 600017 y 450007. La v5 sigue parada.
