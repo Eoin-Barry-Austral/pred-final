@@ -1,0 +1,29 @@
+# PRUEBA CORTA de la v9 (usa el dataset de la prueba de la v7, exp 9987). VM z739m-b.
+# v9 = v7 SIN genetica y entrenando SOLO con 2021: BO con 202101-202105 (valida 202107),
+# final con 202101-202107. 2019 y 2020 siguen en el dataset solo para lags y tendencias.
+# Semillerio 20, canaritos 2.0, deflacion por IPC. Reusa los datasets despues de
+# canaritos de la v7 (mismo preprocesamiento) cuando existen.
+# Lo lee vm/lanzar.sh A (VM z739m-a). Formato KEY=valor, sin espacios ni comillas.
+
+GRUPO=B
+EXPERIMENTO=9984
+SEMILLAS_PIPELINE=570001
+PRUEBA_FRACCION=0.03
+
+FT_SEMILLERIO=20
+CN_DESVIOS=2.0
+DR_METODO=deflacion
+MESES_EXCLUIR=201901,201902,201903,201904,201905,201906,201907,201908,201909,201910,201911,201912,202001,202002,202003,202004,202005,202006,202007,202008,202009,202010,202011,202012
+CK_DESDE_EXP=9987
+GA_ACTIVA=0
+
+KAGGLE_SUBIR=0
+KAGGLE_COMPETENCIA=labo-1-ba-2026-analista-sr
+KAGGLE_JSON=/home/ds/buckets/b1/kaggle.json
+
+BUCKET_DIR=/home/ds/buckets/b1
+DATASET_PATH=/home/ds/buckets/b1/datasets/analistasr_competencia_2026.csv.gz
+
+MAIL_FROM=sin-mail
+MAIL_PASS_FILE=/dev/null
+MAIL_TO_FILE=/dev/null

@@ -402,3 +402,12 @@ Pedido del usuario: la genética medida en las 5 semillas más fuertes, no en un
 - **Con genética, −7,8 contra la misma semilla sin genética** (centro −12,0). Es un solo par y la búsqueda de hiperparámetros también cambia (eligió otro modelo con las 10 columnas extra), pero es la única comparación limpia que hay, y va en contra de la genética.
 - Lectura conjunta: lo que hizo que la v7 le gane a la v5 (+5 en 3 de 3) parece ser **sacar 2020**, no la genética. La v8 lo va a confirmar: su genética viene descartando las fórmulas (rondas 1 y 2) y saca además 202101–202102.
 - Tabla en `z739_v7ga/resultados/puntajes_publicos.tsv`.
+
+## 2026-10-23 23:30 UTC — v9 preparada: solo 2021 (exp. 9400, VM z739m-a)
+
+Idea del usuario: entrenar solo con 2021. Es el extremo del eje que se viene probando (v5 todo; v7 sin 2020; v8 sin 2020 ni 202101–202102).
+
+- **v9 = v7 sin genética**, entrenando **solo con 2021**: BO con 202101–202105 (valida en 202107) y final con 202101–202107. 2019 y 2020 se excluyen (`MESES_EXCLUIR`, 24 meses), pero siguen en el dataset para los lags y las tendencias. Semillerío 20, canaritos 2,0, deflación por IPC. Script igual al de la v8; solo cambia el `.env`.
+- Reusa los datasets después de canaritos de la v7 (`CK_DESDE_EXP=9600`).
+- A favor: comportamiento reciente y ~1,5–2 h por semilla. En contra: ~15.000 bajas para aprender, contra ~40.000 en la v7; más variación entre semillas.
+- **Arranque automático:** cuando la v7 termine la 600017 (~06:30 UTC del sábado), se para z739k-a2, corre la prueba corta de la v9 (exp. 9984). Solo si pasan los controles (`TERMINADO`, sin errores, "BO: entrena con 5 meses: 202101-202105", "final training: entrena con 7 meses", credencial de Kaggle, sin genética) se lanza z739m-a. La **450007 de la v7 queda sin correr** (la v7 termina con 9 semillas, más la 570001 repetida con genética).
