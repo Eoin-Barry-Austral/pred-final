@@ -1,17 +1,11 @@
-# PRUEBA CORTA de z739_final_senior_v7.R (no es una corrida real). VM z739k-b.
-# v7 = v5 (BO por AUC, semillerio 20, canaritos 2.0, deflacion por IPC) con:
-#   * FE genetico (una sola busqueda para todas las semillas, despues de canaritos)
-#   * 2020 fuera de todo entrenamiento (sigue en el dataset para lags y tendencias)
-# Lo lee vm/lanzar.sh A (VM z739k-a). Formato KEY=valor, sin espacios ni comillas.
-
+# z739_final_senior_v7.R: REPETICION de la semilla 570001 CON genetica (exp 9601).
+# La 570001 de la v7 (exp 9600) corrio sin genetica porque arranco antes de
+# aceptar las formulas. Esta corrida usa las mismas formulas aceptadas (se copia
+# exp/WF9600_ga a exp/WF9601_ga antes de lanzar, asi no se vuelve a buscar).
+# Lo lee vm/lanzar.sh B (VM z739k-b). Sube a Kaggle.
 GRUPO=B
-
-# experimento nuevo: exp/WF9600_s<semilla>; la genetica en exp/WF9600_ga
-EXPERIMENTO=9987
-
-# semillas buenas primero (promedio publico de la v2)
-SEMILLAS_PIPELINE=570001,210011
-PRUEBA_FRACCION=0.03
+EXPERIMENTO=9601
+SEMILLAS_PIPELINE=570001
 
 FT_SEMILLERIO=20
 CN_DESVIOS=2.0
@@ -29,7 +23,7 @@ GA_N_CONTROL=19
 GA_SEMILLA=777
 GA_HORAS_MAX=8
 
-KAGGLE_SUBIR=0
+KAGGLE_SUBIR=1
 KAGGLE_COMPETENCIA=labo-1-ba-2026-analista-sr
 KAGGLE_JSON=/home/ds/buckets/b1/kaggle.json
 
