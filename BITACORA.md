@@ -281,3 +281,9 @@ v5 peor que la v2: 2 de 4 (9 cortes) y 2 de 4 (centro). Diferencia media: -0.5 (
     - v6: 264 columnas nuevas y RF con 201907–201909. OK.
     - v7: 570001 sin genética (esperado, antes del cambio de criterio), 333331 y 210011 (después del reinicio) con 10 columnas. OK.
     - **El de la 210011 es el único caso** en que una corrida usó otra configuración que la pedida. Los otros cambios de configuración a mitad de corrida (la v5 de 30 a 20 modelos) se hicieron con reinicio de la VM y el log lo confirma ("semillerio: 20 modelos").
+
+## 2026-10-23 01:20 UTC — v7: 333331 (primera con genética completa)
+
+- **333331 v7: 442,4** (centro 446,8; máximo 450,6 en 10.500). v2 440,7 (**+1,7**; centro +3,1), v5 437,3 (**+5,0**; centro +7,3), v3 433,6.
+- Es la primera versión nueva que le gana a la v2 en esta semilla, que fue la 2.ª mejor de la v2: no lo explica la regresión a la media, que empujaba para abajo.
+- **v7 contra v5: 2 de 2 mejores, +5,4 de promedio (centro +6,5).** v7 contra v2: 1 de 2 (−2,7 de promedio, por la 570001 sin genética).
