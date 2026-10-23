@@ -333,3 +333,15 @@ v5 peor que la v2: 2 de 4 (9 cortes) y 2 de 4 (centro). Diferencia media: -0.5 (
 - **v7 contra v2: 2 peores de 5** (centro 2 de 5). Diferencia media +0,6 (centro +0,3). Wilcoxon p = 0,59.
 - v7 contra v5: 0 peores de 3, +5,0 (centro +5,8), sin cambios. v5 contra v2: 3 de 5, −3,0, p = 0,59, sin cambios.
 - Estado: 850009 en modelos finales (9 de 20) y 999953 en la BO. Faltan 150001, 600017 y 450007. La v5 sigue parada.
+
+## 2026-10-23 13:00 UTC — v8 preparada (exp. 9500, VM z739l-a)
+
+Pedido del usuario: la genética medida en las 5 semillas más fuertes, no en una, y sacar también 202101 y 202102.
+
+- **v8 = v7** (BO por AUC, semillerío 20, canaritos 2,0, deflación por IPC) con:
+    - **Genética medida en 5 semillas a la vez** (`GA_SEMILLAS_DATOS=570001,333331,210011,910009,850009`). Cada fórmula se mide en el dataset después de canaritos de cada una (los checkpoints de la v7) y se promedia la mejora de AUC. Búsqueda en 202105 y control en 202106 (5 semillas × 1 mes = 5 modelos por medición). 3 rondas de 20×10, tope de 7 h, semilla 888.
+    - **Criterio configurable** (`GA_CRITERIO=positiva`): la propia corrida acepta las fórmulas con mejora positiva en el control. Ya no hace falta editar archivos desde afuera (lo que causó el fallo de caché de la v7).
+    - **Fuera del entrenamiento: 2020, 202101 y 202102.** BO con 15 meses, final con 17.
+    - **Reusa los datasets después de canaritos de la v7** (`CK_DESDE_EXP=9600`): mismo preprocesamiento, ahorra ~20 min por semilla. Los canaritos se calcularon con 202101–202103, como en la v7.
+- Orden de semillas: 910009, 333331, 570001, 210011, 850009, 150001, 600017, 450007, 999953, 720007.
+- Contra la v7 cambian dos cosas (genética de 5 semillas y sacar 202101–202102): si cambia el puntaje, no se sabe cuál de las dos fue.
