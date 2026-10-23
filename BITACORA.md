@@ -287,3 +287,18 @@ v5 peor que la v2: 2 de 4 (9 cortes) y 2 de 4 (centro). Diferencia media: -0.5 (
 - **333331 v7: 442,4** (centro 446,8; máximo 450,6 en 10.500). v2 440,7 (**+1,7**; centro +3,1), v5 437,3 (**+5,0**; centro +7,3), v3 433,6.
 - Es la primera versión nueva que le gana a la v2 en esta semilla, que fue la 2.ª mejor de la v2: no lo explica la regresión a la media, que empujaba para abajo.
 - **v7 contra v5: 2 de 2 mejores, +5,4 de promedio (centro +6,5).** v7 contra v2: 1 de 2 (−2,7 de promedio, por la 570001 sin genética).
+
+## 2026-10-23 05:10 UTC — v5/v7: v7 210011
+
+- **210011 v7: 437,9** (centro 436,4; máximo 450,4 en 11.000, flojo en 9.000 con 416,9). v2 439,6 (**−1,6**; centro −6,4). No hay par de la v5 (la v5 no llegó a correr la 210011).
+- Ojo: es la semilla del fallo de caché; su BO mezcla 62 evaluaciones sin las fórmulas genéticas y el resto con ellas (el modelo final sí las usa).
+
+| Semilla | v2 | v7 | Dif. | Dif. centro |
+|---|---|---|---|---|
+| 210011 | 439,6 | 437,9 | −1,6 | −6,4 |
+| 333331 | 440,7 | 442,4 | +1,7 | +3,1 |
+| 570001 | 444,0 | 437,0 | −7,0 | −12,5 |
+
+- **v7 contra v2: 2 peores de 3** (centro 2 de 3). Diferencia media −2,3 (centro −5,3). Sin p de Wilcoxon todavía.
+- v7 contra v5: 0 peores de 2, +5,4 (centro +6,5), sin cambios. v5 contra v2: 3 de 5, −3,0 (centro −1,8), p = 0,59, sin cambios.
+- Estado: las 2 VMs (z739k-a y z739k-a2) corren la v7; la v5 está parada desde ~21:00 UTC del 22 (la 210011 de la v5 quedó en el FE).
