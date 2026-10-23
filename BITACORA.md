@@ -389,3 +389,16 @@ Pedido del usuario: la genética medida en las 5 semillas más fuertes, no en un
 - **v7 contra v2: 4 peores de 7** (centro 4 de 7). Diferencia media −0,2 (centro −2,4). Wilcoxon p = 1,00.
 - v7 contra v5: 0 peores de 3, +5,0 (centro +5,8), sin cambios. v5 contra v2: 3 de 5, −3,0 (centro −1,8), p = 0,59, sin cambios.
 - Estado: z739l-a (v8, 910009) en la genética, ronda 1 generación 3. z739k-b (exp. 9601, 570001 con genética) en la BO, ~44 de 82. La 150001 de la v7 quedó en `FE intra-mes` desde las 13:12 (z739k-a2 parada); faltan también 600017 y 450007. La v5 sigue parada.
+
+## 2026-10-23 21:15 UTC — 570001 con genética (exp. 9601): la genética de la v7 no ayudó en la comparación limpia
+
+| 570001 | Promedio 9 cortes | Centro 9.000–10.500 |
+|---|---|---|
+| v2 | 444,0 | 453,1 |
+| v5 (con 2020) | 431,2 | 434,9 |
+| **v7 sin genética** (sin 2020) | **437,0** | **440,6** |
+| **v7 con genética** (sin 2020) | **429,2** | **428,6** |
+
+- **Con genética, −7,8 contra la misma semilla sin genética** (centro −12,0). Es un solo par y la búsqueda de hiperparámetros también cambia (eligió otro modelo con las 10 columnas extra), pero es la única comparación limpia que hay, y va en contra de la genética.
+- Lectura conjunta: lo que hizo que la v7 le gane a la v5 (+5 en 3 de 3) parece ser **sacar 2020**, no la genética. La v8 lo va a confirmar: su genética viene descartando las fórmulas (rondas 1 y 2) y saca además 202101–202102.
+- Tabla en `z739_v7ga/resultados/puntajes_publicos.tsv`.
