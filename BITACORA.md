@@ -425,3 +425,10 @@ Idea del usuario: entrenar solo con 2021. Es el extremo del eje que se viene pro
 - **La 570001 de la v7 (exp. 9600) es exactamente esta receta**, así que se toma como la 570001 de la v10 (copiada a `z739_v10/resultados/puntajes_publicos.tsv`) y no se repite. Orden: 333331, 910009, 210011, 850009, 150001, 720007, 999953, 600017, 450007.
 - **v8:** se deja terminar la 910009 (Kaggle ~04:30 UTC, un dato de "sin enero–febrero 2021") y después se para. Arranque automático de la v10: prueba corta (exp. 9983) y lanzamiento solo si pasan los controles (BO con 17 meses, final con 19, credencial, sin genética, `TERMINADO`, sin errores).
 - Al cargar puntajes de la v10: `agregar_puntajes.R z739_v10/resultados/puntajes_publicos.tsv 9300 <csv>`.
+
+## 2026-10-24 05:50 UTC — v9 y v10 lanzadas; v8 910009
+
+- **v9 lanzada** a las 03:24 UTC (z739m-a): la prueba corta (exp. 9984) pasó todos los controles (BO con 5 meses 202101–202105, final con 7, sin genética, credencial, `TERMINADO`).
+- **v7 150001: 437,8** (v2 435,9, +1,9). **La v7 cierra 4 a 4 contra la v2, diferencia media 0,0.**
+- **v8 910009: 431,9** (centro 437,2), contra **v7 444,5** (−12,6) y v2 436,7 (−4,8). Un solo par, y la v8 tiene una fórmula genética casi nula. Lo que la diferencia de la v7 en lo importante es que **saca también enero y febrero 2021**, y le fue peor: primera señal de que sacar datos recientes puede pasarse de la raya (ojo con la v9, que se queda solo con 2021).
+- **v10 lanzada** a las 05:50 UTC (z739n-a), después de la 910009 de la v8: la prueba corta (exp. 9983) pasó los controles (BO con 17 meses, final con 19, sin genética, credencial, `TERMINADO`). La v8 queda con 1 semilla.
