@@ -411,3 +411,9 @@ Idea del usuario: entrenar solo con 2021. Es el extremo del eje que se viene pro
 - Reusa los datasets después de canaritos de la v7 (`CK_DESDE_EXP=9600`).
 - A favor: comportamiento reciente y ~1,5–2 h por semilla. En contra: ~15.000 bajas para aprender, contra ~40.000 en la v7; más variación entre semillas.
 - **Arranque automático:** cuando la v7 termine la 600017 (~06:30 UTC del sábado), se para z739k-a2, corre la prueba corta de la v9 (exp. 9984). Solo si pasan los controles (`TERMINADO`, sin errores, "BO: entrena con 5 meses: 202101-202105", "final training: entrena con 7 meses", credencial de Kaggle, sin genética) se lanza z739m-a. La **450007 de la v7 queda sin correr** (la v7 termina con 9 semillas, más la 570001 repetida con genética).
+
+## 2026-10-24 02:15 UTC — v8: genética terminada; fin de la v7; la v9 se adelanta
+
+- **v8, genética:** las rondas 1 a 4 se descartaron (mejoran en la búsqueda y quedan negativas en el control). La ronda 5, `(ctrx_quarter + mpayroll) + mrentabilidad`, quedó con **+0,00007 en el control** (puesto 8 de 20) y entra por el criterio "positiva": 5 columnas (`gen_05` con lags y deltas). Es prácticamente cero: no se espera efecto.
+- **Decisión del usuario: terminar con la v7** (su genética no suma) y usar las dos VMs para la v8 y la v9. La 150001 de la v7 termina (~03:15 UTC), después se para z739k-a2, la 600017 y la 450007 de la v7 no se corren, y la **v9 arranca ~5 h antes** (prueba corta y lanzamiento solo si pasan los controles).
+- v7 final: 8 semillas con genética (210011, 333331, 910009, 720007, 850009, 999953, 150001 y la 570001 repetida, exp. 9601) y la 570001 sin genética.
