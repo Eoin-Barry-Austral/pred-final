@@ -417,3 +417,11 @@ Idea del usuario: entrenar solo con 2021. Es el extremo del eje que se viene pro
 - **v8, genética:** las rondas 1 a 4 se descartaron (mejoran en la búsqueda y quedan negativas en el control). La ronda 5, `(ctrx_quarter + mpayroll) + mrentabilidad`, quedó con **+0,00007 en el control** (puesto 8 de 20) y entra por el criterio "positiva": 5 columnas (`gen_05` con lags y deltas). Es prácticamente cero: no se espera efecto.
 - **Decisión del usuario: terminar con la v7** (su genética no suma) y usar las dos VMs para la v8 y la v9. La 150001 de la v7 termina (~03:15 UTC), después se para z739k-a2, la 600017 y la 450007 de la v7 no se corren, y la **v9 arranca ~5 h antes** (prueba corta y lanzamiento solo si pasan los controles).
 - v7 final: 8 semillas con genética (210011, 333331, 910009, 720007, 850009, 999953, 150001 y la 570001 repetida, exp. 9601) y la 570001 sin genética.
+
+## 2026-10-24 02:30 UTC — v10 = v7 sin genética (exp. 9300, VM z739n-a); se para la v8
+
+- **Decisión del usuario (opción B):** la genética no suma (570001: −7,8 con genética; v8: 4 de 5 rondas descartadas, la 5.ª entró con +0,00007). La idea con la única señal a favor, **sacar 2020 sin nada más**, todavía no estaba medida en varias semillas: todas las semillas de la v7, salvo la 570001, tienen genética.
+- **v10:** 2020 fuera de todo entrenamiento (BO con 17 meses, final con 19), **sin genética**. Semillerío 20, canaritos 2,0, deflación por IPC. Reusa los datasets de la v7. Script igual al de la v8 y la v9; solo cambia el `.env`.
+- **La 570001 de la v7 (exp. 9600) es exactamente esta receta**, así que se toma como la 570001 de la v10 (copiada a `z739_v10/resultados/puntajes_publicos.tsv`) y no se repite. Orden: 333331, 910009, 210011, 850009, 150001, 720007, 999953, 600017, 450007.
+- **v8:** se deja terminar la 910009 (Kaggle ~04:30 UTC, un dato de "sin enero–febrero 2021") y después se para. Arranque automático de la v10: prueba corta (exp. 9983) y lanzamiento solo si pasan los controles (BO con 17 meses, final con 19, credencial, sin genética, `TERMINADO`, sin errores).
+- Al cargar puntajes de la v10: `agregar_puntajes.R z739_v10/resultados/puntajes_publicos.tsv 9300 <csv>`.
