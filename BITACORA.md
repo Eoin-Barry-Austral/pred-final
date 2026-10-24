@@ -438,3 +438,10 @@ Idea del usuario: entrenar solo con 2021. Es el extremo del eje que se viene pro
 - **v9 570001: 416,3** (centro 9.000–10.500: 422,0). Contra **v2 444,0: −27,7** (centro −31,1); contra **v10 (= v7 sin genética) 437,0: −20,7** (centro −18,6). v9 peor que la v2 en 1 de 1. Un solo par, pero la caída es grande: refuerza la señal de la v8 de que quedarse solo con datos recientes se pasa de la raya.
 - Pares de referencia sin cambios: v10 vs v2 570001 −7,0 (centro −12,5); v10 vs v7 570001 0,0 (es el mismo run).
 - Tiempos: la 570001 de la v9 tardó ~2 h 40 min (BO 29 min, final 1 h 56 min, Kaggle 8 min). v10 333331 en la BO (35 de 50 iteraciones a las 07:06).
+
+## 2026-10-24 09:10 UTC — v9/v10: v9 s333331
+
+- v9 s333331 terminó con sus 9 envíos: media 429,1 (centro 432,6).
+- v2 vs v9: 333331 440,7 → 429,1 (−11,6); 570001 444,0 → 416,3 (−27,7). v9 peor en 2 de 2 (también en el centro). Diferencia media −19,7 (centro −21,1).
+- v2 vs v10: solo 570001, −7,0 (centro −12,5). v7 vs v10: 570001 idéntica (0,0). v10 vs v9: 570001 −20,7 (centro −18,6).
+- Wilcoxon todavía no aparece (pocos pares).
