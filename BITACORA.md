@@ -445,3 +445,9 @@ Idea del usuario: entrenar solo con 2021. Es el extremo del eje que se viene pro
 - v2 vs v9: 333331 440,7 → 429,1 (−11,6); 570001 444,0 → 416,3 (−27,7). v9 peor en 2 de 2 (también en el centro). Diferencia media −19,7 (centro −21,1).
 - v2 vs v10: solo 570001, −7,0 (centro −12,5). v7 vs v10: 570001 idéntica (0,0). v10 vs v9: 570001 −20,7 (centro −18,6).
 - Wilcoxon todavía no aparece (pocos pares).
+
+## 2026-10-24 11:00 UTC — se para la v9 (solo 2021); las 2 VMs a la v10
+
+- **v9, 2 pares:** 570001 **416,3** (v2 444,0, −27,7; v7 437,0) y 333331 **429,1** (v2 440,7, −11,6; v7 442,4). **−19,7 contra la v2 y −17,0 contra la v7.** La 910009 se cortó en 17 de 20 modelos.
+- **Eje "datos recientes":** sacar 2020 da una señal a favor (570001 v10/v7 sin genética +5,8 contra la v5); sacar además enero y febrero 2021 (v8) da −12,6 en la 910009; quedarse solo con 2021 (v9) da ~−20. Hay un punto óptimo: sacar la pandemia y nada más.
+- **Decisión del usuario:** parar la v9 y poner esa VM en la v10. **z739n-a2** lanzada con la lista reordenada para que tome primero las semillas fuertes (recorre al revés: 910009, 210011, 850009, 150001, …). z739n-a sigue con su orden (333331 → 910009 → 210011 …); `EN_CURSO` evita que corran la misma.
