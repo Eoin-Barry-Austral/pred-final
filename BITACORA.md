@@ -460,3 +460,12 @@ Idea del usuario: entrenar solo con 2021. Es el extremo del eje que se viene pro
 - v2 vs v9 sin cambios (parada): −19,7 (centro −21,1), 2 de 2 peores. v10 vs v9: v9 peor en 2 de 2, media −14,7.
 - Wilcoxon todavía no aparece (pocos pares).
 - Estado: z739n-a en v10 210011 (BO 47 de 82, arrancó 11:16); z739n-a2 en v10 910009 (BO 58 de 82, arrancó 11:00).
+
+## 2026-10-24 11:30 UTC — v11 preparada: castigar el falso negativo (POS_PESO)
+
+Idea del usuario: perder un BAJA+2 cuesta 975.000 y mandarle a un BAJA+1 o a un CONTINUA, 25.000. BAJA+1 y BAJA+2 quedan iguales entre sí.
+
+- **v11 = base ganadora (v10 o v2) con pesos en el entrenamiento:** cada positivo (BAJA+1 y BAJA+2) pesa **POS_PESO = 3** y cada CONTINUA pesa 1, en la BO y en el final training. La validación de la BO (AUC) no lleva pesos. Script = v10 + dos `weight=` en `lgb.Dataset` y una línea de log ("pesos: positivos (BAJA+1 y BAJA+2) = 3").
+- Dos configuraciones listas: `.env.A` (base v10: sin 2020, semillerío 20, canaritos 2,0; exp. 9200, reusa datasets de la v7) y `.env.A_base_v2` (todos los meses, semillerío 9, canaritos 2,5; exp. 9250). La base se elige el domingo con los pares de la v10 contra la v2.
+- Plan: se lanza cuando la v10 libere las VMs (~domingo 03:00 UTC), con prueba corta antes (exp. 9982). ~6–8 semillas para el domingo a la tarde.
+- Expectativa honesta: los pesos sobre todo suben las probabilidades, y el corte es por ranking. Puede reordenar el borde, pero el efecto esperado es chico.
