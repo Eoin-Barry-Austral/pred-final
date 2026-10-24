@@ -459,4 +459,4 @@ Idea del usuario: entrenar solo con 2021. Es el extremo del eje que se viene pro
 - v7 vs v10: 333331 442,4 → 437,8 (−4,5; centro −10,1); 570001 0,0 (mismo run). v10 peor en 1 de 2, media −2,3 (centro −5,1).
 - v2 vs v9 sin cambios (parada): −19,7 (centro −21,1), 2 de 2 peores. v10 vs v9: v9 peor en 2 de 2, media −14,7.
 - Wilcoxon todavía no aparece (pocos pares).
-- Estado: z739n-a en v10 210011 (BO 15 de 82, arrancó 11:16); z739n-a2 en v10 910009 (BO 27 de 82, arrancó 11:00).
+- Estado: z739n-a en v10 210011 (BO 47 de 82, arrancó 11:16); z739n-a2 en v10 910009 (BO 58 de 82, arrancó 11:00).
