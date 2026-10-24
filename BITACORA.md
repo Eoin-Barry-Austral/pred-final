@@ -469,3 +469,9 @@ Idea del usuario: perder un BAJA+2 cuesta 975.000 y mandarle a un BAJA+1 o a un 
 - Dos configuraciones listas: `.env.A` (base v10: sin 2020, semillerío 20, canaritos 2,0; exp. 9200, reusa datasets de la v7) y `.env.A_base_v2` (todos los meses, semillerío 9, canaritos 2,5; exp. 9250). La base se elige el domingo con los pares de la v10 contra la v2.
 - Plan: se lanza cuando la v10 libere las VMs (~domingo 03:00 UTC), con prueba corta antes (exp. 9982). ~6–8 semillas para el domingo a la tarde.
 - Expectativa honesta: los pesos sobre todo suben las probabilidades, y el corte es por ranking. Puede reordenar el borde, pero el efecto esperado es chico.
+
+## 2026-10-24 20:45 UTC — v10: 210011 mala; se para la v10; v11 sobre la v2
+
+- **v10 210011: 427,7** (v2 439,6, −11,9; v7 437,9). **v10 con 4 pares: peor que la v2 en 3 de 4 (−4,8) y peor que la v7 en 3 de 4 (−5,0).**
+- **Corrección sobre la genética:** la v7 (con genética) le gana a la v10 (sin genética, todo lo demás igual) en 3 de 4 semillas (570001 −7,8; 333331 +4,5; 910009 +5,1; 210011 +10,2). La genética no resta, y puede que sume. Descartarla con el par de la 570001 fue apurado.
+- **Decisión del usuario:** parar la v10 (la 850009 quedó en 10 de 20 modelos y la 150001 en la BO) y lanzar la **v11 sobre todo el dataset**: la receta exacta de la v2 (todos los meses, semillerío 9, canaritos 2,5) más **POS_PESO = 3** (castigo al falso negativo). v11 contra v2 mide solo esa idea. Exp. 9250, VMs z739o-a y z739o-a2, semillas fuertes primero. Prueba corta (exp. 9981) con controles: pesos = 3, canaritos 2,5, BO con 29 meses, final con 31, semillerío 9, sin meses excluidos ni genética, credencial, `TERMINADO`.
