@@ -432,3 +432,9 @@ Idea del usuario: entrenar solo con 2021. Es el extremo del eje que se viene pro
 - **v7 150001: 437,8** (v2 435,9, +1,9). **La v7 cierra 4 a 4 contra la v2, diferencia media 0,0.**
 - **v8 910009: 431,9** (centro 437,2), contra **v7 444,5** (−12,6) y v2 436,7 (−4,8). Un solo par, y la v8 tiene una fórmula genética casi nula. Lo que la diferencia de la v7 en lo importante es que **saca también enero y febrero 2021**, y le fue peor: primera señal de que sacar datos recientes puede pasarse de la raya (ojo con la v9, que se queda solo con 2021).
 - **v10 lanzada** a las 05:50 UTC (z739n-a), después de la 910009 de la v8: la prueba corta (exp. 9983) pasó los controles (BO con 17 meses, final con 19, sin genética, credencial, `TERMINADO`). La v8 queda con 1 semilla.
+
+## 2026-10-24 07:10 UTC — v9/v10: v9 570001
+
+- **v9 570001: 416,3** (centro 9.000–10.500: 422,0). Contra **v2 444,0: −27,7** (centro −31,1); contra **v10 (= v7 sin genética) 437,0: −20,7** (centro −18,6). v9 peor que la v2 en 1 de 1. Un solo par, pero la caída es grande: refuerza la señal de la v8 de que quedarse solo con datos recientes se pasa de la raya.
+- Pares de referencia sin cambios: v10 vs v2 570001 −7,0 (centro −12,5); v10 vs v7 570001 0,0 (es el mismo run).
+- Tiempos: la 570001 de la v9 tardó ~2 h 40 min (BO 29 min, final 1 h 56 min, Kaggle 8 min). v10 333331 en la BO (35 de 50 iteraciones a las 07:06).
