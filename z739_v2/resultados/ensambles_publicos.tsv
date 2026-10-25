@@ -19,3 +19,9 @@ D_v2v7v3v11	v2 (10) + v7 (8) + v3 (7) + v11 (5)	10500	441.248
 E_v2v7v11	v2 (10) + v7 (8) + v11 (5)	9500	443.998	
 E_v2v7v11	v2 (10) + v7 (8) + v11 (5)	10000	441.081	
 E_v2v7v11	v2 (10) + v7 (8) + v11 (5)	10500	442.581	
+loco_1_premiar_duda	C + duda (m - sd)	10000	438.664	
+loco_1_premiar_duda	C + duda (m - sd)	10500	438.248	
+loco_2_castigar_duda	C - duda (m + sd)	10000	441.164	
+loco_3_voto_optimista	mejor puesto entre v2, v7, v3, v11	10000	444.914	
+loco_4_rescate_v11	C 9500 + 500 de la v11	10000	444.248	
+loco_5_corte_por_ganancia	C con P(BAJA+2) > 2,5%	7894	414.664	
