@@ -493,3 +493,10 @@ Idea del usuario: perder un BAJA+2 cuesta 975.000 y mandarle a un BAJA+1 o a un 
 
 - Empata con la v2 en el promedio, en su mejor semilla, pero **la curva se corre a la derecha**: pierde en 9.000–9.500 y gana mucho en 11.000–12.000 (pico 456,1 en 11.000). Tiene sentido: con los positivos pesando 3, el modelo sube a los dudosos y los envíos extra (de 10.500 a 12.000) encuentran más BAJA+2.
 - Para el ensamble y las entregas: la v11 pide un corte más alto (~11.000) que la v2 (~9.500).
+
+## 2026-10-25 09:10 UTC — v11: 210011 y 910009
+
+- **v11 210011: 440,4** (v2 439,6, +0,8; v7 437,9, +2,5). **v11 910009: 433,5** (v2 436,7, −3,2; v7 444,5, −11,0).
+- **v2 vs v11, 4 pares:** 210011 +0,8 (centro −0,3); 333331 −9,5 (−8,6); 570001 +0,5 (−9,2); 910009 −3,2 (+2,3). **v11 peor en 2 de 4** (centro: 3 de 4). Diferencia media **−2,9** (centro −4,0).
+- **v7 vs v11, 4 pares:** 210011 +2,5; 333331 −11,2; 570001 +7,5; 910009 −11,0. **v11 peor en 2 de 4** (centro: 2 de 4). Diferencia media **−3,0** (centro −3,9).
+- Siguen corriendo 850009 (z739o-a) y 150001 (z739o-a2), en la BO.
