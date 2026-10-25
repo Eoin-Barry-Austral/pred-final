@@ -522,3 +522,17 @@ Ensamble por ranking (`ensamble_versiones.R`, cada corrida pesa igual), en `C:\t
 - v7 = 8 corridas con genética (las 7 de exp. 9600 más la 570001 repetida, exp. 9601). v11 = 5 semillas (570001, 333331, 210011, 910009, 150001).
 - Cada corrida comparte ~93–95% de sus 10.000 envíos con el ensamble.
 - **Regla para elegir las 2 entregas (fijada antes de ver los puntajes):** (1) la segura: el ensamble más grande que no quede más de ~8 puntos por debajo del mejor candidato en el público, en 10.000; (2) la variante: el mejor candidato en el público en otro corte. Diferencias de menos de ~8 puntos en el público se toman como empate (ruido del 30%).
+
+## 2026-10-25 19:30 UTC — puntajes públicos de los candidatos
+
+| Candidato | 9.500 | 10.000 | 10.500 | Promedio |
+|---|---|---|---|---|
+| A: v2 (10) | 443,4 | 444,5 | 441,9 | 443,3 |
+| B: v2 + v7 (18) | 447,6 | 441,9 | 442,0 | 443,8 |
+| **C: v2 + v7 + v3 (25)** | **450,3** | 444,8 | 438,0 | 444,4 |
+| **D: v2 + v7 + v3 + v11 (30)** | 443,3 | **444,6** | 441,2 | 443,0 |
+| E: v2 + v7 + v11 (23) | 444,0 | 441,1 | 442,6 | 442,6 |
+
+- Todos los candidatos están dentro de ~8 puntos entre sí: empate según la regla. El mejor envío es C en 9.500 (450,3).
+- **Aplicando la regla fijada antes de ver los puntajes:** entrega segura = el más grande dentro de 8 puntos del mejor, en 10.000 → **D en 10.000 (444,6)**; entrega variante = el mejor del público en otro corte → **C en 9.500 (450,3)**.
+- Pendiente: el candidato F con las semillas de la v11 (450007) y la v12 que lleguen.
