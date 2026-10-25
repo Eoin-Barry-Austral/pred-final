@@ -553,3 +553,12 @@ Base: las 25 corridas del candidato C (v2 + v7 + v3); en dos variantes, también
 5. **Corte por ganancia esperada**: mandar si P(BAJA+2) > 2,5%, con P(BAJA+2) ≈ prob(v2)/2. Da **7.894** envíos (con umbral 0,04: 9.289; con 0,06: 6.914).
 - Todas comparten 97,6–98,3% de los envíos con C en el mismo corte: cambian ~200–250 clientes del borde.
 - **Puntajes de los ensambles locos** (contra C en el mismo corte: 10.000 = 444,8; 10.500 = 438,0): premiar la duda 438,7 en 10.000 (−6,2) y 438,2 en 10.500 (+0,2); castigar la duda 441,2 (−3,7); voto optimista **444,9** (+0,1); rescate de la v11 444,2 (−0,6); **corte por ganancia (7.894 envíos) 414,7**. Ninguno le gana a C. El único efecto claro es el del corte: mandar ~7.900, como dice la cuenta de ganancia esperada con las probabilidades del modelo, cuesta ~30 puntos. El modelo **subestima** la probabilidad de baja en 202109 (drift), y conviene mandar más de lo que "dice" la probabilidad. Con un falso negativo 39 veces más caro, equivocarse por enviar de más es barato y por enviar de menos es caro.
+
+## 2026-10-25 22:30 UTC — segunda tanda de ensambles locos (`ensamble_locos2.R`)
+
+En `C:\tmp\lab1\ensamble_final\locos2\` (sin "loco" en el nombre, a pedido del usuario):
+- **democracia** (10.000): cada una de las 25 corridas de C vota por sus 10.000; entran los más votados. 7.491 clientes tienen los 25 votos y 13.229 al menos uno. Comparte 98,9% con C.
+- **fusion_reciproca** (10.000): suma de 1/(60 + puesto). 99,4% con C.
+- **v2_manda** (10.000): C con la v2 pesando el doble. 99,3% con C.
+- **titulares** (9.500 y 10.000): solo las 5 corridas de la v2 con mejor puntaje público (sobreajuste a propósito). ~97,4% con C.
+- **semilla_de_oro** (9.500 y 10.000): la 570001 en todas sus versiones (v2, v3, v5, v7 sin y con genética, v11). ~96,4% con C.
