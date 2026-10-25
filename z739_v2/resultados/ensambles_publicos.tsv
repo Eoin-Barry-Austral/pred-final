@@ -25,3 +25,10 @@ loco_2_castigar_duda	C - duda (m + sd)	10000	441.164
 loco_3_voto_optimista	mejor puesto entre v2, v7, v3, v11	10000	444.914	
 loco_4_rescate_v11	C 9500 + 500 de la v11	10000	444.248	
 loco_5_corte_por_ganancia	C con P(BAJA+2) > 2,5%	7894	414.664	
+democracia	C: votos por corrida	10000	444.164	
+fusion_reciproca	C: 1/(60+puesto)	10000	445.164	
+v2_manda	C con v2 x2	10000	444.081	
+titulares	5 mejores semillas v2 en el publico	9500	452.998	
+titulares	5 mejores semillas v2 en el publico	10000	448.664	
+semilla_de_oro	570001 en 6 versiones	9500	450.748	
+semilla_de_oro	570001 en 6 versiones	10000	445.831	

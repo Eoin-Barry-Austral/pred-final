@@ -562,3 +562,4 @@ En `C:\tmp\lab1\ensamble_final\locos2\` (sin "loco" en el nombre, a pedido del u
 - **v2_manda** (10.000): C con la v2 pesando el doble. 99,3% con C.
 - **titulares** (9.500 y 10.000): solo las 5 corridas de la v2 con mejor puntaje público (sobreajuste a propósito). ~97,4% con C.
 - **semilla_de_oro** (9.500 y 10.000): la 570001 en todas sus versiones (v2, v3, v5, v7 sin y con genética, v11). ~96,4% con C.
+- **Puntajes de la segunda tanda** (C: 9.500 = 450,3; 10.000 = 444,8): democracia 444,2; fusión recíproca 445,2; v2 manda 444,1; **titulares 453,0 en 9.500** y 448,7 en 10.000; semilla de oro 450,7 en 9.500 y 445,8 en 10.000. Todo dentro de ~8 puntos de C: empate según la regla. Los "titulares" se eligieron por su puntaje público, así que su ventaja en el público es la esperada por selección y no dice nada del privado. Las entregas siguen siendo D 10.000 y C 9.500.
