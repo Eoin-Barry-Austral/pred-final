@@ -506,3 +506,19 @@ Idea del usuario: perder un BAJA+2 cuesta 975.000 y mandarle a un BAJA+1 o a un 
 - **v11 contra v2 (4 pares):** 570001 +0,5, 210011 +0,8, 910009 −3,2, 333331 −9,5: **−2,9 de promedio** (centro −4,0). No le gana a la v2. La BO de la 850009 se trabó 6 h; la vigía la reinició a las 14:06 UTC y retomó desde HT.RDATA (42 de 82 evaluaciones). La v11 llega a ~6–7 semillas antes de los ensambles.
 - **v12 = "clon de la 570001"** (idea del usuario, versión Bilardo): la receta exacta de la v2 (todo el dataset, semillerío 9, canaritos 2,5, sin pesos) **con los hiperparámetros que eligió la BO de la 570001 de la v2** (~550 árboles, ~610 hojas, lr 0,039, `feature_fraction` 0,17, `min_data_in_leaf` 4.067) en todas las semillas, sin BO. Script = v11 + `BO_LOG_FIJO`: copia ese `BO_log.txt` a la carpeta de la semilla y el script toma la mejor fila. Exp. 9150, VMs z739p-*. ~2,5 h por semilla. Semillas: las otras 9 (la 570001 sería idéntica a la de la v2).
 - **Arranque automático:** cuando la v11 termine la 150001 (~15:25 UTC) se para z739o-a, corre la prueba corta (exp. 9980) y solo si pasan los controles (hiperparámetros fijos copiados, "la BO ya habia terminado", pesos = 1, canaritos 2,5, final con 31 meses, semillerío 9, credencial, `TERMINADO`) se lanza z739p-a. z739o-a2 sigue con la v11 (850009).
+
+## 2026-10-25 19:00 UTC — ensambles finales: candidatos
+
+Ensamble por ranking (`ensamble_versiones.R`, cada corrida pesa igual), en `C:\tmp\lab1\ensamble_final\finales\`:
+
+| Candidato | Corridas | Cortes |
+|---|---|---|
+| A: v2 | 10 | 10.500 (9.500 y 10.000 ya subidos: 443,4 y 444,5) |
+| B: v2 + v7 | 18 | 9.500, 10.000, 10.500 |
+| C: v2 + v7 + v3 | 25 | 9.500, 10.000, 10.500 |
+| D: v2 + v7 + v3 + v11 | 30 | 9.500, 10.000, 10.500 |
+| E: v2 + v7 + v11 | 23 | 9.500, 10.000, 10.500 |
+
+- v7 = 8 corridas con genética (las 7 de exp. 9600 más la 570001 repetida, exp. 9601). v11 = 5 semillas (570001, 333331, 210011, 910009, 150001).
+- Cada corrida comparte ~93–95% de sus 10.000 envíos con el ensamble.
+- **Regla para elegir las 2 entregas (fijada antes de ver los puntajes):** (1) la segura: el ensamble más grande que no quede más de ~8 puntos por debajo del mejor candidato en el público, en 10.000; (2) la variante: el mejor candidato en el público en otro corte. Diferencias de menos de ~8 puntos en el público se toman como empate (ruido del 30%).
