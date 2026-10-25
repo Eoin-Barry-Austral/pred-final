@@ -536,3 +536,9 @@ Ensamble por ranking (`ensamble_versiones.R`, cada corrida pesa igual), en `C:\t
 - Todos los candidatos están dentro de ~8 puntos entre sí: empate según la regla. El mejor envío es C en 9.500 (450,3).
 - **Aplicando la regla fijada antes de ver los puntajes:** entrega segura = el más grande dentro de 8 puntos del mejor, en 10.000 → **D en 10.000 (444,6)**; entrega variante = el mejor del público en otro corte → **C en 9.500 (450,3)**.
 - Pendiente: el candidato F con las semillas de la v11 (450007) y la v12 que lleguen.
+
+## 2026-10-25 19:55 UTC — v12 333331; las 2 VMs a la v12 (5 semillas)
+
+- **v12 333331: 435,4** (v2 440,7, −5,3; centro −9,0). La curva es mejor en 8.000–8.500 y plana y más baja desde 9.000: los hiperparámetros de la 570001 (muy regularizados) no le sientan a otra semilla.
+- **Decisión del usuario: 5 semillas de la v12 para ver si vale.** Para que lleguen a tiempo (~21:50 hora Argentina, ~2 h antes del cierre) se paró la **450007 de la v11** (estaba terminando la BO; la v11 queda con 5 semillas) y se lanzó **z739p-a2** con la v12, con las fuertes primero (tomó la 910009). z739p-a sigue con la 210011.
+- Entregas: si la v12 no suma, quedan D en 10.000 y C en 9.500. Si suma, se arma el candidato F con todo.
