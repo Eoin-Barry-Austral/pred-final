@@ -500,3 +500,9 @@ Idea del usuario: perder un BAJA+2 cuesta 975.000 y mandarle a un BAJA+1 o a un 
 - **v2 vs v11, 4 pares:** 210011 +0,8 (centro −0,3); 333331 −9,5 (−8,6); 570001 +0,5 (−9,2); 910009 −3,2 (+2,3). **v11 peor en 2 de 4** (centro: 3 de 4). Diferencia media **−2,9** (centro −4,0).
 - **v7 vs v11, 4 pares:** 210011 +2,5; 333331 −11,2; 570001 +7,5; 910009 −11,0. **v11 peor en 2 de 4** (centro: 2 de 4). Diferencia media **−3,0** (centro −3,9).
 - Siguen corriendo 850009 (z739o-a) y 150001 (z739o-a2), en la BO.
+
+## 2026-10-25 14:45 UTC — v11 con 4 pares; v12 "clon de la 570001" preparada
+
+- **v11 contra v2 (4 pares):** 570001 +0,5, 210011 +0,8, 910009 −3,2, 333331 −9,5: **−2,9 de promedio** (centro −4,0). No le gana a la v2. La BO de la 850009 se trabó 6 h; la vigía la reinició a las 14:06 UTC y retomó desde HT.RDATA (42 de 82 evaluaciones). La v11 llega a ~6–7 semillas antes de los ensambles.
+- **v12 = "clon de la 570001"** (idea del usuario, versión Bilardo): la receta exacta de la v2 (todo el dataset, semillerío 9, canaritos 2,5, sin pesos) **con los hiperparámetros que eligió la BO de la 570001 de la v2** (~550 árboles, ~610 hojas, lr 0,039, `feature_fraction` 0,17, `min_data_in_leaf` 4.067) en todas las semillas, sin BO. Script = v11 + `BO_LOG_FIJO`: copia ese `BO_log.txt` a la carpeta de la semilla y el script toma la mejor fila. Exp. 9150, VMs z739p-*. ~2,5 h por semilla. Semillas: las otras 9 (la 570001 sería idéntica a la de la v2).
+- **Arranque automático:** cuando la v11 termine la 150001 (~15:25 UTC) se para z739o-a, corre la prueba corta (exp. 9980) y solo si pasan los controles (hiperparámetros fijos copiados, "la BO ya habia terminado", pesos = 1, canaritos 2,5, final con 31 meses, semillerío 9, credencial, `TERMINADO`) se lanza z739p-a. z739o-a2 sigue con la v11 (850009).
