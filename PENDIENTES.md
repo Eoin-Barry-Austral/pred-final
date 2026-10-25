@@ -50,3 +50,10 @@ Cada uno con el motivo y dónde va. Al implementarlo, pasarlo a la bitácora y b
 - Agregado: 2026-10-19.
 
 > El punto **7** (vigia tambien para la BO: 60 min sin una evaluacion nueva) se implemento el 2026-10-19 en la v4. Ver BITACORA.md.
+
+## 8. Exprimir el castigo al falso negativo (después de la v11)
+
+- **Dónde:** `.env` (POS_PESO) y el armado de `weight` en `lgb.Dataset` del script v11.
+- **Ideas, en orden:** (1) barrer la intensidad: POS_PESO 3 / 6 / 10 / 20 (la cuenta económica da 975.000 / 25.000 ≈ 39); (2) pesos distintos por clase: BAJA+2 ×10, BAJA+1 ×3, CONTINUA ×1 (solo el BAJA+2 paga); (3) que la BO lo sepa: AUC con pesos en la validación, o ganancia en la zona de 10.000–12.000 (ojo: la BO por ganancia no ayudó en la v3 y la v4); (4) muestrear 10–20% de los CONTINUA en el final training: efecto parecido a pesar los positivos y 3–5 veces más rápido, o sea más semillas para el ensamble; (5) focal loss (castigar más a los positivos dudosos), objetivo a medida y más riesgoso; (6) que el corte acompañe: con el castigo la curva se corre a la derecha (v11 570001: pico en 11.000).
+- **Cómo medirlo:** con un "ensayo general" que entrene hasta 202105 y prediga 202107 (clase conocida), para elegir intensidad, mezcla y corte con la ganancia real en vez del 30% público.
+- Agregado: 2026-10-25.
