@@ -542,3 +542,13 @@ Ensamble por ranking (`ensamble_versiones.R`, cada corrida pesa igual), en `C:\t
 - **v12 333331: 435,4** (v2 440,7, −5,3; centro −9,0). La curva es mejor en 8.000–8.500 y plana y más baja desde 9.000: los hiperparámetros de la 570001 (muy regularizados) no le sientan a otra semilla.
 - **Decisión del usuario: 5 semillas de la v12 para ver si vale.** Para que lleguen a tiempo (~21:50 hora Argentina, ~2 h antes del cierre) se paró la **450007 de la v11** (estaba terminando la BO; la v11 queda con 5 semillas) y se lanzó **z739p-a2** con la v12, con las fuertes primero (tomó la 910009). z739p-a sigue con la 210011.
 - Entregas: si la v12 no suma, quedan D en 10.000 y C en 9.500. Si suma, se arma el candidato F con todo.
+
+## 2026-10-25 21:00 UTC — ensambles "locos" desde la matriz de confusión (`ensamble_locos.R`)
+
+Base: las 25 corridas del candidato C (v2 + v7 + v3); en dos variantes, también la v11. Archivos en `C:\tmp\lab1\ensamble_final\locos\`:
+1. **Premiar la duda** (anti falso negativo): puesto promedio menos un desvío entre corridas; entran los clientes en los que los modelos discrepan. 10.000 y 10.500.
+2. **Castigar la duda** (contraste): puesto promedio más un desvío. 10.000.
+3. **Voto optimista**: el mejor puesto entre los ensambles de cada versión (v2, v7, v3, v11). 10.000.
+4. **Rescate de la v11**: C en 9.500 más los 500 que la v11 pone más arriba y C deja afuera.
+5. **Corte por ganancia esperada**: mandar si P(BAJA+2) > 2,5%, con P(BAJA+2) ≈ prob(v2)/2. Da **7.894** envíos (con umbral 0,04: 9.289; con 0,06: 6.914).
+- Todas comparten 97,6–98,3% de los envíos con C en el mismo corte: cambian ~200–250 clientes del borde.
