@@ -475,3 +475,21 @@ Idea del usuario: perder un BAJA+2 cuesta 975.000 y mandarle a un BAJA+1 o a un 
 - **v10 210011: 427,7** (v2 439,6, −11,9; v7 437,9). **v10 con 4 pares: peor que la v2 en 3 de 4 (−4,8) y peor que la v7 en 3 de 4 (−5,0).**
 - **Corrección sobre la genética:** la v7 (con genética) le gana a la v10 (sin genética, todo lo demás igual) en 3 de 4 semillas (570001 −7,8; 333331 +4,5; 910009 +5,1; 210011 +10,2). La genética no resta, y puede que sume. Descartarla con el par de la 570001 fue apurado.
 - **Decisión del usuario:** parar la v10 (la 850009 quedó en 10 de 20 modelos y la 150001 en la BO) y lanzar la **v11 sobre todo el dataset**: la receta exacta de la v2 (todos los meses, semillerío 9, canaritos 2,5) más **POS_PESO = 3** (castigo al falso negativo). v11 contra v2 mide solo esa idea. Exp. 9250, VMs z739o-a y z739o-a2, semillas fuertes primero. Prueba corta (exp. 9981) con controles: pesos = 3, canaritos 2,5, BO con 29 meses, final con 31, semillerío 9, sin meses excluidos ni genética, credencial, `TERMINADO`.
+
+## 2026-10-25 01:30 UTC — v11: 570001 (castigo al falso negativo)
+
+| Corte | v2 | v11 | Diferencia |
+|---|---|---|---|
+| 8.000 | 428,0 | 430,4 | +2,4 |
+| 8.500 | 447,4 | 444,0 | −3,4 |
+| 9.000 | 455,3 | 440,0 | −15,3 |
+| 9.500 | 458,7 | 440,7 | −17,9 |
+| 10.000 | 452,7 | 448,2 | −4,5 |
+| 10.500 | 445,7 | 446,6 | +0,9 |
+| 11.000 | 442,2 | **456,1** | +13,8 |
+| 11.500 | 439,1 | 450,9 | +11,8 |
+| 12.000 | 427,0 | 443,7 | +16,7 |
+| **Promedio** | **444,0** | **444,5** | **+0,5** |
+
+- Empata con la v2 en el promedio, en su mejor semilla, pero **la curva se corre a la derecha**: pierde en 9.000–9.500 y gana mucho en 11.000–12.000 (pico 456,1 en 11.000). Tiene sentido: con los positivos pesando 3, el modelo sube a los dudosos y los envíos extra (de 10.500 a 12.000) encuentran más BAJA+2.
+- Para el ensamble y las entregas: la v11 pide un corte más alto (~11.000) que la v2 (~9.500).
