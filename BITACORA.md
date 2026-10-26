@@ -576,3 +576,9 @@ Idea del usuario: undersampling extremo de los CONTINUA, tipo 5%.
 - La primera v13 (exp. 9100) usaba los hiperparámetros de la BO de la v2 tal cual, elegidos con el 20% de los CONTINUA, para entrenar con el 5% (4 veces menos filas). Se paró y se corrigió a pedido del usuario, con los valores escritos y aprobados por él antes de correr.
 - **Regla:** árboles × 2, hojas por árbol ÷ 2, learning rate ÷ 2, mínimo de clientes por hoja ÷ 4. El resto igual que la v2. Archivos por semilla en `z739_v13/hp_v13/` (y en `exp/v13_hp/` del bucket), generados con `hiperparametros_v13.R`. Ejemplo 570001: 550 → 1.100 árboles, 613 → 307 hojas, lr 0,0390 → 0,0195, mínimo 4.067 → 1.017.
 - Exp. 9050 nuevo (para no reusar nada de la 9100). Prueba corta (exp. 9978) antes de lanzar las 2 VMs.
+
+## 2026-10-26 01:10 UTC — v13 (exp. 9050, hiperparámetros ajustados al 5%): 333331 y 570001
+
+- **333331: 415,8** (v2 440,7, −24,9; centro −25,0). **570001: 425,2** (v2 444,0, −18,8; centro −25,0).
+- **2 peores de 2** (también en el centro). Diferencia media −21,8 (9 cortes) y −25,0 (centro 9.000–10.500).
+- Siguen la 210011 y la 910009 (~42 min por semilla).
