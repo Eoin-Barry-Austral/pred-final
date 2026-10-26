@@ -597,3 +597,8 @@ Idea del usuario: undersampling extremo de los CONTINUA, tipo 5%.
 
 - Iguales a la v14 salvo el undersampling de CONTINUA en el final training: **v15 = 12,5%** (exp. 8950, VMs z739s-*) y **v16 = 15%** (exp. 8900, VMs z739t-*). El mínimo de clientes por hoja sigue la regla de la v14 (proporcional a las filas contra el 20% de la BO de la v2): v15 = 2.229 × 0,625 = **1.393**; v16 = 2.229 × 0,75 = **1.672**. Árboles 744, hojas 281, learning rate 0,0281 y el resto igual que la v14.
 - Archivos de hiperparámetros en `exp/v15_hp/BO_log.txt` y `exp/v16_hp/BO_log.txt`. Se lanzan después de la v14, con la aprobación del usuario.
+
+## 2026-10-26 03:10 UTC — v14: 570001, 333331
+
+- 570001: **431,9** (v2 444,0, −12,2; centro −18,3); 333331: **433,1** (v2 440,7, −7,5; centro −8,3).
+- **2 peores de 2**; diferencia media **−9,9** (9 cortes) y **−13,3** (centro 9.000–10.500). Mejor que la v13 (−21,8), pero todavía claramente debajo de la v2.
