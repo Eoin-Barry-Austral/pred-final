@@ -621,3 +621,9 @@ Idea del usuario: undersampling extremo de los CONTINUA, tipo 5%.
 - **Nuevo cierre: martes 2026-10-27 a las 23:59 hora Argentina** (miércoles 02:59 UTC). Se puede elegir 1 sola entrega final, y se puede cambiar hasta el cierre.
 - El usuario quiere cambiar la entrega (D 10.000, 444,6). Candidato sugerido: el ensamble de 6 semillas de la v2 en 9.500 (450,9), o un ensamble nuevo con la v14/v15/v16 cuando estén.
 - Cupo de Kaggle hasta el cierre: 100 desde el lunes 21:00 y 100 desde el martes 21:00 (hora Argentina). Pendientes: ~189 envíos (v14 600017, v15 y v16, 9 cortes por semilla).
+
+## 2026-10-26 16:15 UTC — subidor de envíos pendientes (`subidor/subir_pendientes.R`)
+
+- La v15 (9 semillas; la 450007 se trabó 3 veces en el final training y se abandonó) y la 600017 de la v14 no se subieron por el límite diario de Kaggle. Los csv están en el bucket sin la marca `.subido`.
+- **Subidor:** corre en una VM (z739u-b, exp. 8800) y sube los csv sin marca, en el orden de `SUBIR_LISTA` (hoy: `8950:*,9000:600017`), hasta `MAX_ENVIOS` (99) o hasta 3 fallas seguidas; graba la marca `.subido` de cada uno que entra y la lista de envíos al final. La espera entre envíos mantiene la CPU ocupada para que la vigía de `startup.sh` no lo mate. Probado localmente con carpetas simuladas (orden y salteo de los ya subidos).
+- Programado para lanzarse solo el **martes 2026-10-27 00:02 UTC** (lunes 21:02 hora Argentina), cuando se reinicia el cupo diario. Plan acordado: hoy v15 (81) y v14 600017 (8); mañana a las 21:00, primero los ensambles finales y después la v16.
