@@ -615,3 +615,9 @@ Idea del usuario: undersampling extremo de los CONTINUA, tipo 5%.
 - 600017: solo 1 de 9 envíos llegó a Kaggle (8000: 426,4). **Se acabó el cupo diario de Kaggle** ("0 submissions remaining today") y los otros 8 dieron error 400. No entra en los pares. Los archivos `KA9000_s600017_*.csv` están en `exp/WF9000_s600017/kaggle/`.
 - Con 9 semillas: **5 peores de 9** (centro: 4 de 9); diferencia media **−0,3** (9 cortes) y **−0,7** (centro 9.000–10.500); Wilcoxon p = 0,91. Empate con la v2.
 - **Ojo:** la v15 (exp. 8950) ya terminó 333331 y 570001 sin ningún envío aceptado (todos error 400 por el cupo). Mientras no se renueve el cupo diario, la v15 y la v16 no van a tener puntajes; los CSV quedan en `exp/WF<exp>_s<sem>/kaggle/` para subirlos después.
+
+## 2026-10-26 15:00 UTC — la cátedra extendió el cierre
+
+- **Nuevo cierre: martes 2026-10-27 a las 23:59 hora Argentina** (miércoles 02:59 UTC). Se puede elegir 1 sola entrega final, y se puede cambiar hasta el cierre.
+- El usuario quiere cambiar la entrega (D 10.000, 444,6). Candidato sugerido: el ensamble de 6 semillas de la v2 en 9.500 (450,9), o un ensamble nuevo con la v14/v15/v16 cuando estén.
+- Cupo de Kaggle hasta el cierre: 100 desde el lunes 21:00 y 100 desde el martes 21:00 (hora Argentina). Pendientes: ~189 envíos (v14 600017, v15 y v16, 9 cortes por semilla).
