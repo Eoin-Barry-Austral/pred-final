@@ -608,3 +608,10 @@ Idea del usuario: undersampling extremo de los CONTINUA, tipo 5%.
 - 150001: **443,8** (v2 435,9, +7,9); 210011: **432,9** (v2 439,6, −6,7); 450007: **438,1** (v2 427,2, +10,8); 850009: **435,1** (v2 435,3, −0,1); 910009: **434,1** (v2 436,7, −2,7); 999953: **427,8** (v2 425,8, +2,1).
 - Con las 8 semillas: **5 peores de 8** (centro: 4 de 8); diferencia media **−1,0** (9 cortes) y **−0,8** (centro 9.000–10.500); Wilcoxon p = 0,73. Empate práctico con la v2: las semillas nuevas compensaron el mal arranque (570001, 333331).
 - Faltan 720007 y 600017 (~05:45 UTC); después la cadena lanza la v15.
+
+## 2026-10-26 07:10 UTC — v14: 720007 (y 600017 incompleta)
+
+- 720007: **429,6** (v2 424,2, +5,4; centro +0,4).
+- 600017: solo 1 de 9 envíos llegó a Kaggle (8000: 426,4). **Se acabó el cupo diario de Kaggle** ("0 submissions remaining today") y los otros 8 dieron error 400. No entra en los pares. Los archivos `KA9000_s600017_*.csv` están en `exp/WF9000_s600017/kaggle/`.
+- Con 9 semillas: **5 peores de 9** (centro: 4 de 9); diferencia media **−0,3** (9 cortes) y **−0,7** (centro 9.000–10.500); Wilcoxon p = 0,91. Empate con la v2.
+- **Ojo:** la v15 (exp. 8950) ya terminó 333331 y 570001 sin ningún envío aceptado (todos error 400 por el cupo). Mientras no se renueve el cupo diario, la v15 y la v16 no van a tener puntajes; los CSV quedan en `exp/WF<exp>_s<sem>/kaggle/` para subirlos después.
