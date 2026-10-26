@@ -602,3 +602,9 @@ Idea del usuario: undersampling extremo de los CONTINUA, tipo 5%.
 
 - 570001: **431,9** (v2 444,0, −12,2; centro −18,3); 333331: **433,1** (v2 440,7, −7,5; centro −8,3).
 - **2 peores de 2**; diferencia media **−9,9** (9 cortes) y **−13,3** (centro 9.000–10.500). Mejor que la v13 (−21,8), pero todavía claramente debajo de la v2.
+
+## 2026-10-26 05:10 UTC — v14: 210011, 910009, 150001, 850009, 999953, 450007
+
+- 150001: **443,8** (v2 435,9, +7,9); 210011: **432,9** (v2 439,6, −6,7); 450007: **438,1** (v2 427,2, +10,8); 850009: **435,1** (v2 435,3, −0,1); 910009: **434,1** (v2 436,7, −2,7); 999953: **427,8** (v2 425,8, +2,1).
+- Con las 8 semillas: **5 peores de 8** (centro: 4 de 8); diferencia media **−1,0** (9 cortes) y **−0,8** (centro 9.000–10.500); Wilcoxon p = 0,73. Empate práctico con la v2: las semillas nuevas compensaron el mal arranque (570001, 333331).
+- Faltan 720007 y 600017 (~05:45 UTC); después la cadena lanza la v15.
