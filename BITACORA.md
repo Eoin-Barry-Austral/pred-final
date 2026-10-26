@@ -582,3 +582,7 @@ Idea del usuario: undersampling extremo de los CONTINUA, tipo 5%.
 - **333331: 415,8** (v2 440,7, −24,9; centro −25,0). **570001: 425,2** (v2 444,0, −18,8; centro −25,0).
 - **2 peores de 2** (también en el centro). Diferencia media −21,8 (9 cortes) y −25,0 (centro 9.000–10.500).
 - Siguen la 210011 y la 910009 (~42 min por semilla).
+
+## 2026-10-26 01:30 UTC — v13 (5% de CONTINUA): muy mala
+
+- 570001: **425,2** (v2 444,0, −18,8); 333331: **415,8** (v2 440,7, −24,9). **−21,8 de promedio, −25 en el centro.** Entrenar el modelo final con solo el 5% de los CONTINUA, aun con hiperparámetros ajustados, empeora mucho el ordenamiento: el modelo ve muy pocos ejemplos de clientes que se quedan y deja de distinguir bien en el borde.
