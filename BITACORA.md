@@ -586,3 +586,9 @@ Idea del usuario: undersampling extremo de los CONTINUA, tipo 5%.
 ## 2026-10-26 01:30 UTC — v13 (5% de CONTINUA): muy mala
 
 - 570001: **425,2** (v2 444,0, −18,8); 333331: **415,8** (v2 440,7, −24,9). **−21,8 de promedio, −25 en el centro.** Entrenar el modelo final con solo el 5% de los CONTINUA, aun con hiperparámetros ajustados, empeora mucho el ordenamiento: el modelo ve muy pocos ejemplos de clientes que se quedan y deja de distinguir bien en el borde.
+
+## 2026-10-26 01:45 UTC — v14: 10% de CONTINUA, hiperparámetros uniformes (exp. 9000)
+
+- Pedido del usuario: undersampling al 10% y los mismos hiperparámetros en todas las semillas. Se paró la v13.
+- **Hiperparámetros uniformes** (aprobados por el usuario antes de correr): la **mediana** de la mejor fila de la BO de la v2 de las 10 semillas (`hiperparametros_uniformes.R`), con el **mínimo de clientes por hoja ÷ 2** (la BO de la v2 vio el 20% de los CONTINUA; la v14 entrena con el 10%). Árboles 744, hojas 281, learning rate 0,0281, `feature_fraction` 0,162, `min_sum_hessian` 0,374, `min_data_in_leaf` 1.114, `lambda_l1` 0,011, `lambda_l2` 0,220. Archivo: `z739_v14/BO_log_v14.txt` (en el bucket, `exp/v14_hp/BO_log.txt`).
+- El resto, la v2 exacta (todo el dataset, semillerío 9, canaritos 2,5, sin pesos), con el final training usando todos los positivos y el 10% de los CONTINUA. Prueba corta (exp. 9977) y lanzamiento de las 2 VMs (z739r-*) si pasan los controles. Después del cierre: envíos tardíos.
