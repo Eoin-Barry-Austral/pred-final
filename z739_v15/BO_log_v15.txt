@@ -1,0 +1,2 @@
+num_iterations	num_leaves	learning_rate	feature_fraction	min_sum_hessian_in_leaf	min_data_in_leaf	lambda_l1	lambda_l2	y
+9.5392010918534	8.13208550640169	-5.15542898628877	0.161888052009616	-1.41773580619653	1393	-6.54156820993549	-2.18461138066185	1

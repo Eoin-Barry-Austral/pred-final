@@ -592,3 +592,8 @@ Idea del usuario: undersampling extremo de los CONTINUA, tipo 5%.
 - Pedido del usuario: undersampling al 10% y los mismos hiperparámetros en todas las semillas. Se paró la v13.
 - **Hiperparámetros uniformes** (aprobados por el usuario antes de correr): la **mediana** de la mejor fila de la BO de la v2 de las 10 semillas (`hiperparametros_uniformes.R`), con el **mínimo de clientes por hoja ÷ 2** (la BO de la v2 vio el 20% de los CONTINUA; la v14 entrena con el 10%). Árboles 744, hojas 281, learning rate 0,0281, `feature_fraction` 0,162, `min_sum_hessian` 0,374, `min_data_in_leaf` 1.114, `lambda_l1` 0,011, `lambda_l2` 0,220. Archivo: `z739_v14/BO_log_v14.txt` (en el bucket, `exp/v14_hp/BO_log.txt`).
 - El resto, la v2 exacta (todo el dataset, semillerío 9, canaritos 2,5, sin pesos), con el final training usando todos los positivos y el 10% de los CONTINUA. Prueba corta (exp. 9977) y lanzamiento de las 2 VMs (z739r-*) si pasan los controles. Después del cierre: envíos tardíos.
+
+## 2026-10-26 01:55 UTC — v15 (12,5%) y v16 (15%) preparadas, sin lanzar
+
+- Iguales a la v14 salvo el undersampling de CONTINUA en el final training: **v15 = 12,5%** (exp. 8950, VMs z739s-*) y **v16 = 15%** (exp. 8900, VMs z739t-*). El mínimo de clientes por hoja sigue la regla de la v14 (proporcional a las filas contra el 20% de la BO de la v2): v15 = 2.229 × 0,625 = **1.393**; v16 = 2.229 × 0,75 = **1.672**. Árboles 744, hojas 281, learning rate 0,0281 y el resto igual que la v14.
+- Archivos de hiperparámetros en `exp/v15_hp/BO_log.txt` y `exp/v16_hp/BO_log.txt`. Se lanzan después de la v14, con la aprobación del usuario.
