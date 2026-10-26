@@ -570,3 +570,9 @@ Idea del usuario: undersampling extremo de los CONTINUA, tipo 5%.
 - **v13 = v2 exacta** (todo el dataset, semillerío 9, canaritos 2,5, sin pesos). **Cada semilla reusa su propia BO de la v2** (`BO_LOG_FIJO=.../WF9800_s{semilla}/BO_log.txt`), así que la única diferencia contra la v2 en la misma semilla es que **el final training usa todos los positivos y solo el 5% de los CONTINUA** (`FT_UNDERSAMPLING=0.05`, mismo sorteo `azar` que la BO). Cada BAJA pesa como ~20 CONTINUA.
 - ~45 min por semilla (sin BO y con ~1/4 de las filas). Exp. 9100, VMs z739q-*. Falta decidir de dónde salen las VMs (parar la v12).
 - **v13 lanzada** a las 23:59 UTC (20:59 hora Argentina), después de parar la v12 (decisión del usuario: "no sirve"; quedó con 210011 439,7 y 333331 435,4). Prueba corta (exp. 9979) OK: hiperparámetros de la BO de la v2 para la semilla y "undersampling de CONTINUA 0.05 - 8094 filas, 1296 positivos" (16% de positivos). Se reordenó la lista y se reinició z739q-a2 para que tome la 333331 en lugar de la 720007. z739q-a corre la 570001.
+
+## 2026-10-26 00:20 UTC — v13 corregida: hiperparámetros ajustados al 5% (exp. 9050)
+
+- La primera v13 (exp. 9100) usaba los hiperparámetros de la BO de la v2 tal cual, elegidos con el 20% de los CONTINUA, para entrenar con el 5% (4 veces menos filas). Se paró y se corrigió a pedido del usuario, con los valores escritos y aprobados por él antes de correr.
+- **Regla:** árboles × 2, hojas por árbol ÷ 2, learning rate ÷ 2, mínimo de clientes por hoja ÷ 4. El resto igual que la v2. Archivos por semilla en `z739_v13/hp_v13/` (y en `exp/v13_hp/` del bucket), generados con `hiperparametros_v13.R`. Ejemplo 570001: 550 → 1.100 árboles, 613 → 307 hojas, lr 0,0390 → 0,0195, mínimo 4.067 → 1.017.
+- Exp. 9050 nuevo (para no reusar nada de la 9100). Prueba corta (exp. 9978) antes de lanzar las 2 VMs.

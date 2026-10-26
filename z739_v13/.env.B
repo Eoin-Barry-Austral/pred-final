@@ -1,10 +1,11 @@
 # PRUEBA CORTA de la v13 (3% de clientes). VM z739q-b.
-# Todo el dataset, semillerio 9, canaritos 2.5, sin pesos; cada semilla reusa SU BO de la v2
+# Todo el dataset, semillerio 9, canaritos 2.5, sin pesos; hiperparametros = la mejor fila de la BO de la v2 de
+# cada semilla con arboles x2, hojas /2, learning rate /2 y minimo por hoja /4 (exp/v13_hp, hiperparametros_v13.R)
 # (exp 9800) y el final training usa solo el 5% de los CONTINUA. VMs z739q-*.
 # Lo lee vm/lanzar.sh (VMs z739q-*). Formato KEY=valor, sin espacios ni comillas.
 
 GRUPO=B
-EXPERIMENTO=9979
+EXPERIMENTO=9978
 SEMILLAS_PIPELINE=570001
 PRUEBA_FRACCION=0.03
 
@@ -15,7 +16,7 @@ MESES_EXCLUIR=
 CK_DESDE_EXP=
 GA_ACTIVA=0
 POS_PESO=1
-BO_LOG_FIJO=/home/ds/buckets/b1/exp/WF9800_s{semilla}/BO_log.txt
+BO_LOG_FIJO=/home/ds/buckets/b1/exp/v13_hp/BO_log_{semilla}.txt
 FT_UNDERSAMPLING=0.05
 
 KAGGLE_SUBIR=0
