@@ -55,7 +55,7 @@ if (!seco) for (f in pend) {
   esperar(30)
   salida <- suppressWarnings(system(paste(shQuote(kaggle_bin), "competitions submit -c", comp,
                                           "-f", shQuote(f), "-m", shQuote(desc)), intern= TRUE))
-  ok <- is.null(attr(salida, "status")) && !any(grepl("error|limit|exceed|40[0-9]", salida, ignore.case= TRUE))
+  ok <- is.null(attr(salida, "status")) && any(grepl("Successfully submitted", salida, fixed= TRUE))
   if (ok) {
     writeLines(c(format(Sys.time()), salida), paste0(f, ".subido"))
     subidos <- subidos + 1; fallas <- 0

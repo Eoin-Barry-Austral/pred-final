@@ -634,3 +634,17 @@ Idea del usuario: undersampling extremo de los CONTINUA, tipo 5%.
 - **v14 con 10 pares: +0,5 contra la v2** (centro +0,4; 5 de 10 peores; Wilcoxon p = 0,84). 600017 v14: 433,9 (v2 425,4).
 - **v15 (12,5%) con 9 pares: −2,6 contra la v2** (centro −4,6; 5 de 9 peores; p = 0,41) y −2,0 contra la v14 (centro −4,3).
 - Undersampling de CONTINUA en el final training, contra la v2 (100%): 5% −21,8 · **10% +0,5** · 12,5% −2,6 · 15% (pendiente).
+
+## 2026-10-26 (noche ART) — ensambles con v14
+
+Ensambles por rango agregando las 10 corridas de v14 (archivos en `C:\tmp\lab1\ensamble_final\con_v14\`), subidos con la VM subidora (exp 8799/8798). Puntaje público:
+
+| Ensamble | corridas | 9500 | 10000 | mismo sin v14 (9500 / 10000) |
+|---|---|---|---|---|
+| G = v2 + v14 | 20 | 443.4 | 441.6 | A v2: 443.4 / 444.5 |
+| H = v2 + v7 + v14 | 28 | 447.1 | 438.2 | B: 447.6 / 441.9 |
+| I = v2 + v7 + v3 + v14 | 35 | 446.8 | 443.9 | C: 450.3 / 444.8 |
+
+Agregar v14 no mejora: en los 6 casos queda igual o 0,5–4 puntos abajo (dentro del ruido de ±7). Mejores candidatos para la entrega final siguen siendo ens6 v2 9500 (450.9) y C 9500 (450.3); recomendación: C 9500 (más corridas, más diversificado).
+
+Bug del subidor: tomaba como FALLO un envío exitoso cuya referencia contenía "40x" (ref 57684407, H 9500). Ahora el éxito se decide por el texto "Successfully submitted". Marca `.subido` de H 9500 puesta a mano. Lista de envíos en `ensambles/kaggle_submissions_20261027.csv`.
