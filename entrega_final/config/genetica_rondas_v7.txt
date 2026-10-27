@@ -1,0 +1,4 @@
+ronda	nombre	formula	mejora_busqueda	mejora_control	p90_azar	puesto_control	de	aceptada	evaluaciones	corto
+1	gen_01	(mprestamos_personales - ctrx_quarter) - mrentabilidad_annual	0.00109378927087933	0.00142627815280982	0.00183050485635796	6	20	TRUE	105	FALSE
+2	gen_02	(mprestamos_personales * ccaja_ahorro) * cproductos	0.00130232306022082	0.000621950749817302	0.0011280997661393	7	20	TRUE	101	FALSE
+3	gen_03	(mcomisiones + mrentabilidad) - vm_mpagominimo	0.000866716058309347	-5.43743307468425e-05	0.00149573916216865	16	20	FALSE	116	FALSE
