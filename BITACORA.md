@@ -627,3 +627,10 @@ Idea del usuario: undersampling extremo de los CONTINUA, tipo 5%.
 - La v15 (9 semillas; la 450007 se trabó 3 veces en el final training y se abandonó) y la 600017 de la v14 no se subieron por el límite diario de Kaggle. Los csv están en el bucket sin la marca `.subido`.
 - **Subidor:** corre en una VM (z739u-b, exp. 8800) y sube los csv sin marca, en el orden de `SUBIR_LISTA` (hoy: `8950:*,9000:600017`), hasta `MAX_ENVIOS` (99) o hasta 3 fallas seguidas; graba la marca `.subido` de cada uno que entra y la lista de envíos al final. La espera entre envíos mantiene la CPU ocupada para que la vigía de `startup.sh` no lo mate. Probado localmente con carpetas simuladas (orden y salteo de los ya subidos).
 - Programado para lanzarse solo el **martes 2026-10-27 00:02 UTC** (lunes 21:02 hora Argentina), cuando se reinicia el cupo diario. Plan acordado: hoy v15 (81) y v14 600017 (8); mañana a las 21:00, primero los ensambles finales y después la v16.
+
+## 2026-10-27 01:00 UTC — subidor: 89 de 90; v15 contra v2
+
+- El subidor (exp. 8800) subió **89 de 90** pendientes (la v15 completa salvo un envío que Kaggle rechazó, y la 600017 de la v14). Queda 1 pendiente de la v15.
+- **v14 con 10 pares: +0,5 contra la v2** (centro +0,4; 5 de 10 peores; Wilcoxon p = 0,84). 600017 v14: 433,9 (v2 425,4).
+- **v15 (12,5%) con 9 pares: −2,6 contra la v2** (centro −4,6; 5 de 9 peores; p = 0,41) y −2,0 contra la v14 (centro −4,3).
+- Undersampling de CONTINUA en el final training, contra la v2 (100%): 5% −21,8 · **10% +0,5** · 12,5% −2,6 · 15% (pendiente).
