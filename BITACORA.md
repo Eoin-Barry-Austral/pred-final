@@ -648,3 +648,7 @@ Ensambles por rango agregando las 10 corridas de v14 (archivos en `C:\tmp\lab1\e
 Agregar v14 no mejora: en los 6 casos queda igual o 0,5–4 puntos abajo (dentro del ruido de ±7). Mejores candidatos para la entrega final siguen siendo ens6 v2 9500 (450.9) y C 9500 (450.3); recomendación: C 9500 (más corridas, más diversificado).
 
 Bug del subidor: tomaba como FALLO un envío exitoso cuya referencia contenía "40x" (ref 57684407, H 9500). Ahora el éxito se decide por el texto "Successfully submitted". Marca `.subido` de H 9500 puesta a mano. Lista de envíos en `ensambles/kaggle_submissions_20261027.csv`.
+
+## Entrega final seleccionada (2026-10-26 noche ART)
+
+**KA_ens_C_v2v7v3_25_9500.csv** (ensamble por rango de 25 corridas: v2 + v7 + v3, 9.500 envíos, público 450.3). Reemplaza a D 10000. Elegida por ser la más diversificada entre las de mejor público; ens6 v2 9500 (450.9) quedó como alternativa equivalente dentro del ruido.
